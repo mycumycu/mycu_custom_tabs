@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mdscript name="MCT_CustomTabs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://mycu.kylos.pl/x4/md.xsd">
+    <cues>
+        <cue name="OnLuaLoaderReady">
+            <conditions>
+                <event_ui_triggered screen="'Lua_Loader'" control="'Ready'"/>
+            </conditions>
+            <actions>
+                <raise_lua_event name="'Lua_Loader.Load'" param="'extensions.kuertee_ui_extensions.ui.kuertee_menu_map'"/>
+                <raise_lua_event name="'Lua_Loader.Load'" param="'extensions.mycu_custom_tabs.ui.mct'"/>
+            </actions>
+        </cue>
+
+        <cue name="OnLuaLoaderReadyCompleted">
+            <conditions>
+                <event_cue_completed cue="OnLuaLoaderReady"/>
+            </conditions>
+            <actions>
+                <reset_cue cue="OnLuaLoaderReady"/>
+                <reset_cue cue="this"/>
+            </actions>
+        </cue>
+
+        <cue name="MCT_Main" namespace="this">
+            <conditions>
+                <check_any>
+                    <event_cue_signalled cue="md.Setup.GameStart"/>
+                    <event_game_loaded/>
+                </check_any>
+            </conditions>
+            <actions>
+                <debug_text text="'Mycu MCT: Custom Tabs Init'" chance="100"/>
+            </actions>
+            <cues>
+                <cue name="MCT_Add_Interact_Actions" instantiate="true">
+                    <conditions>
+                        <event_cue_signalled cue="md.Interact_Menu_API.Get_Actions"/>
+                    </conditions>
+                    <actions>
+                        <debug_text text="md.MCT_Config.Vault.$debugPrefix + 'MCT_Add_Interact_Actions'" chance="md.MCT_Config.Vault.$debugChance"/>
+
+                        <set_value name="$target" exact="event.param.$object"/>
+                        <do_if value="$target.owner == faction.player and not @$target.isdeployable">
+                            <signal_cue_instantly
+                                    cue="md.Interact_Menu_API.Add_Action"
+                                    param="table[
+                                          $id         = 'add_custom_1',
+                                          $echo       = 1,
+                                          $section    = 'interaction',
+                                          $text       = {26124, 151}.[md.MCT_Config.Vault.$customTabs.$tabName1],
+                                          $icon       = md.MCT_Config.Vault.$customTabs.$tabIcon1,
+                                          $callback   = MCT_CustomTabsAction,
+                                          ]"/>
+                            <do_if value="md.MCT_Config.Vault.$customTabs.$number gt 1">
+                                <signal_cue_instantly
+                                        cue="md.Interact_Menu_API.Add_Action"
+                                        param="table[
+                                          $id         = 'add_custom_2',
+                                          $echo       = 2,
+                                          $section    = 'interaction',
+                                          $text       = {26124, 151}.[md.MCT_Config.Vault.$customTabs.$tabName2],
+                                          $icon       = md.MCT_Config.Vault.$customTabs.$tabIcon2,
+                                          $callback   = MCT_CustomTabsAction,
+                                          ]"/>
+                            </do_if>
+                            <do_if value="md.MCT_Config.Vault.$customTabs.$number gt 2">
+                                <signal_cue_instantly
+                                        cue="md.Interact_Menu_API.Add_Action"
+                                        param="table[
+                                          $id         = 'add_custom_3',
+                                          $echo       = 3,
+                                          $section    = 'interaction',
+                                          $text       = {26124, 151}.[md.MCT_Config.Vault.$customTabs.$tabName3],
+                                          $icon       = md.MCT_Config.Vault.$customTabs.$tabIcon3,
+                                          $callback   = MCT_CustomTabsAction,
+                                          ]"/>
+                            </do_if>
+                            <signal_cue_instantly
+                                    cue="md.Interact_Menu_API.Add_Action"
+                                    param="table[
+                                          $id         = 'remove_custom',
+                                          $section    = 'interaction',
+                                          $text       = {26124, 150},
+                                          $icon       = 'mct_icon_remove',
+                                          $callback   = MCT_CustomTabsAction,
+                                          ]"/>
+                        </do_if>
+                    </actions>
+                </cue>
+                <cue name="MCT_CustomTabsAction" instantiate="true" namespace="this">
+                    <conditions>
+                        <event_cue_signalled/>
+                    </conditions>
+                    <actions>
+                        <set_value name="$actionId" exact="event.param.$id"/>
+                        <set_value name="$object" exact="event.param.$object"/>
+
+                        <debug_text text="md.MCT_Config.Vault.$debugPrefix + 'MCT_CustomTabsAction: ' + event.param" chance="md.MCT_Config.Vault.$debugChance"/>
+                        <debug_text text="md.MCT_Config.Vault.$debugPrefix + '$actionId: ' + $actionId" chance="md.MCT_Config.Vault.$debugChance"/>
+                        <debug_text text="md.MCT_Config.Vault.$debugPrefix + '$object: ' + $object" chance="md.MCT_Config.Vault.$debugChance"/>
+
+                        <raise_lua_event name="'mct.customTabsAction'" param="$actionId +';'+ $object"/>
+                    </actions>
+                </cue>
+            </cues>
+        </cue>
+    </cues>
+</mdscript>

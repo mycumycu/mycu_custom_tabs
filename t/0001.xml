@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<language>
+	<page id="26124" voice="no">
+		<t id="100">Custom Tabs</t>
+		<t id="150">Remove from custom tabs</t>
+		<t id="151">Add to '%s' tab</t>
+
+		<t id="200">Custom Tab A</t>
+		<t id="201">Custom Tab B</t>
+		<t id="202">Custom Tab C</t>
+		<t id="203">General options</t>
+		<t id="204">Number of tabs</t>
+		<t id="205">Select number of tabs. Can be changed anytime.</t>
+		<t id="206">Tabs position</t>
+		<t id="207">At the beginning</t>
+		<t id="208">Just after 'Stations and All ships' tab</t>
+		<t id="209">At the end</t>
+		<t id="210">Select at which position the tabs will be placed</t>
+		<t id="211">First Tab</t>
+		<t id="212">Second Tab</t>
+		<t id="213">Third Tab</t>
+		<t id="214">Enter name of first custom tab</t>
+		<t id="215">Enter name of second custom tab</t>
+		<t id="216">Enter name of third custom tab</t>
+		<t id="217">Select the tab icon. You can check the appearance of the available icons below.</t>
+		<t id="218">Available icons</t>
+		<t id="219">Icon </t>
+		<t id="220">Reset options</t>
+		<t id="221">This element must be checked if you want to reset custom tabs data.</t>
+		<t id="222">This action will move all player ships and stations back to the 'Stations and All ships' property tab. It does not affect tabs configuration.</t>
+		<t id="223">If you want to clear the data - nake sure that checkbox is checked</t>
+		<t id="224">Data has been successfully cleared</t>
+		<t id="225">Clear data</t>
+	</page>
+</language>

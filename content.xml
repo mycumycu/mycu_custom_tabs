@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content id="CustomTabs"
+         name="Mycu: Custom tabs"
+         author="Mycu"
+         version="100"
+         date="2022-03-09"
+         lastupdate="1646807758"
+         save="false"
+         enabled="1"
+         description="Adds up to three new tabs to property owned menu allowing to organize player's assets.">
+    <dependency id="ws_2042901274" optional="false" name="SirNukes Mod Support APIs"/>
+    <dependency id="kuerteeUIExtensionsAndHUD" optional="false" name="kuertee UI Extensions and HUD"/>
+</content>
