@@ -14,6 +14,7 @@ local mct = {}
 local blackboard = {
     configName = "$customTabsConfig",
     dataName = "$customTabsData",
+    contextAction = "$customTabsContextAction",
 }
 
 local tabsConfig = {}
@@ -125,21 +126,37 @@ end
 --
 --
 function mct.customTabsAction(_, params)
-    local action, object = mct.parseParams(params)
-    object64 = ConvertIDTo64Bit(object)
+    local data = GetNPCBlackboard(playerId, blackboard.contextAction) or {}
 
-    if (action == 'remove_custom') then
-        mct.removeObject(object64)
-    end
-    if (string.sub(action, 1, 10) == 'add_custom') then
-        local tabIndex = tonumber(string.sub(action, -1))
-        mct.addObject(tabIndex, object64)
+    local action = data.actionId
+    local objects = data.objects
+
+    mct.printTable(objects)
+    for _, object in ipairs(objects) do
+        object64 = ConvertIDTo64Bit(object)
+        local isValidComponent = IsValidComponent(object64)
+        local isPlayerOwned = GetComponentData(object64, "isplayerowned")
+        local isShip = C.IsRealComponentClass(object64, "ship")
+        local isStation = C.IsRealComponentClass(object64, "station")
+
+        if (isValidComponent and isPlayerOwned and (isShip or isStation)) then
+            if (string.sub(action, 1, 13) == 'remove_custom') then
+                mct.removeObject(object64)
+            end
+            if (string.sub(action, 1, 10) == 'add_custom') then
+                local tabIndex = tonumber(string.sub(action, -1))
+                mct.addObject(tabIndex, object64)
+            end
+        end
     end
 
     -- remove focus
     mapMenu.clearSelectedComponents()
 
-    -- store data
+    -- clear context data
+    SetNPCBlackboard(playerId, blackboard.contextAction, nil)
+
+    -- store object list data
     SetNPCBlackboard(playerId, blackboard.dataName, tabsObjectList)
 
     mapMenu.refreshInfoFrame()
@@ -227,7 +244,6 @@ end
 
 --
 -- Split given string and split using ";" as separator
--- Returns table
 --
 function mct.parseParams(params)
     local output = {}
@@ -322,7 +338,7 @@ function mct.fillCustomTab(numdisplayed, instance, ftable)
 end
 
 --
--- Movs all assets back to global property tab
+-- Moves all assets back to global property tab
 -- Action raised by an config option
 --
 function mct.resetData()

@@ -249,464 +249,64 @@
                 <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $colSpan = 12, $text={26124, 218}, $color = 'Helper.color.blue', $halign = 'left']"/>
 
                 <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 1,
-						$colSpan = 2,
-						$icon  = 'mct_icon_a',
-						$mouseOverText = {26124, 219} + '1',
-						$text = table[
-                          $text   =  {26124, 219} + '1',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 3,
-						$colSpan = 2,
-						$icon  = 'mct_icon_b',
-                        $mouseOverText = {26124, 219} + '2',
-						$text = table[
-                          $text   =  {26124, 219} + '2',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
 
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 5,
-						$colSpan = 2,
-						$icon  = 'mct_icon_c',
-						$mouseOverText = {26124, 219} + '3',
-						$text = table[
-                          $text   =  {26124, 219} + '3',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 7,
-						$colSpan = 2,
-						$icon  = 'mct_icon_1',
-						$mouseOverText = {26124, 219} + '4',
-						$text = table[
-                          $text   =  {26124, 219} + '4',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 9,
-						$colSpan = 2,
-						$icon  = 'mct_icon_2',
-						$mouseOverText = {26124, 219} + '5',
-						$text = table[
-                          $text   =  {26124, 219} + '5',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 11,
-						$colSpan = 2,
-						$icon  = 'mct_icon_3',
-						$mouseOverText = {26124, 219} + '6',
-						$text = table[
-                          $text   =  {26124, 219} + '6',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
+                <set_value name="$icons" exact="[
+                    table[$type='icon', $icon = 'mct_icon_a', $col = 1],
+                    table[$type='icon', $icon = 'mct_icon_b', $col = 3],
+                    table[$type='icon', $icon = 'mct_icon_c', $col = 5],
+                    table[$type='icon', $icon = 'mct_icon_1', $col = 7],
+                    table[$type='icon', $icon = 'mct_icon_2', $col = 9],
+                    table[$type='icon', $icon = 'mct_icon_3', $col = 11],
+                    table[$type='row'],
+                    table[$type='icon', $icon = 'shipbuildst_shield', $col = 1],
+                    table[$type='icon', $icon = 'shipbuildst_turret', $col = 3],
+                    table[$type='icon', $icon = 'shipbuildst_weapon', $col = 5],
+                    table[$type='icon', $icon = 'shipbuildst_paint', $col = 7],
+                    table[$type='icon', $icon = 'shipbuildst_consumable', $col = 9],
+                    table[$type='icon', $icon = 'mapst_filtersystem', $col = 11],
+                    table[$type='row'],
+                    table[$type='icon', $icon = 'mapst_legend', $col = 1],
+                    table[$type='icon', $icon = 'mapst_information', $col = 3],
+                    table[$type='icon', $icon = 'mapst_fs_other', $col = 5],
+                    table[$type='icon', $icon = 'mapst_mission_guidance', $col = 7],
+                    table[$type='icon', $icon = 'mapst_mission_main', $col = 9],
+                    table[$type='icon', $icon = 'tlt_help', $col = 11],
+                    table[$type='row'],
+                    table[$type='icon', $icon = 'mapst_fs_fight', $col = 1],
+                    table[$type='icon', $icon = 'mapst_ol_ship_xl', $col = 3],
+                    table[$type='icon', $icon = 'mapst_ol_ship_l', $col = 5],
+                    table[$type='icon', $icon = 'mapst_ol_ship_m', $col = 7],
+                    table[$type='icon', $icon = 'mapst_ol_ship_s', $col = 9],
+                    table[$type='icon', $icon = 'mapst_ol_ships', $col = 11],
+                ]"/>
 
-                <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
-                <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='']"/>
-                <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
-
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 1,
-						$colSpan = 2,
-						$icon  = 'shipbuildst_shield',
-						$mouseOverText = {26124, 219} + '7',
-						$text = table[
-                          $text   =  {26124, 219} + '7',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 3,
-						$colSpan = 2,
-						$icon  = 'shipbuildst_turret',
-                        $mouseOverText = {26124, 219} + '8',
-						$text = table[
-                          $text   =  {26124, 219} + '8',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 5,
-						$colSpan = 2,
-						$icon  = 'shipbuildst_weapon',
-						$mouseOverText = {26124, 219} + '9',
-						$text = table[
-                          $text   =  {26124, 219} + '9',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 7,
-						$colSpan = 2,
-						$icon  = 'shipbuildst_paint',
-						$mouseOverText = {26124, 219} + '10',
-						$text = table[
-                          $text   =  {26124, 219} + '10',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 9,
-						$colSpan = 2,
-						$icon  = 'shipbuildst_consumable',
-						$mouseOverText = {26124, 219} + '11',
-						$text = table[
-                          $text   =  {26124, 219} + '11',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 11,
-						$colSpan = 2,
-						$icon  = 'mapst_filtersystem',
-						$mouseOverText = {26124, 219} + '12',
-						$text = table[
-                          $text   =  {26124, 219} + '12',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-
-                <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
-                <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='']"/>
-                <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 1,
-						$colSpan = 2,
-						$icon  = 'mapst_legend',
-						$mouseOverText = {26124, 219} + '13',
-						$text = table[
-                          $text   =  {26124, 219} + '13',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 3,
-						$colSpan = 2,
-						$icon  = 'mapst_information',
-						$mouseOverText = {26124, 219} + '14',
-						$text = table[
-                          $text   =  {26124, 219} + '14',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 5,
-						$colSpan = 2,
-						$icon  = 'mapst_fs_other',
-						$mouseOverText = {26124, 219} + '15',
-						$text = table[
-                          $text   =  {26124, 219} + '15',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 7,
-						$colSpan = 2,
-						$icon  = 'mapst_mission_guidance',
-						$mouseOverText = {26124, 219} + '16',
-						$text = table[
-                          $text   =  {26124, 219} + '16',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 9,
-						$colSpan = 2,
-						$icon  = 'mapst_mission_main',
-						$mouseOverText = {26124, 219} + '17',
-						$text = table[
-                          $text   =  {26124, 219} + '17',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 11,
-						$colSpan = 2,
-						$icon  = 'tlt_help',
-						$mouseOverText = {26124, 219} + '18',
-						$text = table[
-                          $text   =  {26124, 219} + '18',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-
-                <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
-                <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='']"/>
-                <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 1,
-						$colSpan = 2,
-						$icon  = 'mapst_fs_fight',
-						$mouseOverText = {26124, 219} + '19',
-						$text = table[
-                          $text   =  {26124, 219} + '19',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 3,
-						$colSpan = 2,
-						$icon  = 'mapst_ol_ship_xl',
-						$mouseOverText = {26124, 219} + '20',
-						$text = table[
-                          $text   =  {26124, 219} + '20',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 5,
-						$colSpan = 2,
-						$icon  = 'mapst_ol_ship_l',
-						$mouseOverText = {26124, 219} + '21',
-						$text = table[
-                          $text   =  {26124, 219} + '21',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 7,
-						$colSpan = 2,
-						$icon  = 'mapst_ol_ship_m',
-						$mouseOverText = {26124, 219} + '22',
-						$text = table[
-                          $text   =  {26124, 219} + '22',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-
-					]"/>
-
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 9,
-						$colSpan = 2,
-						$icon  = 'mapst_ol_ship_s',
-						$mouseOverText = {26124, 219} + '23',
-						$text = table[
-                          $text   =  {26124, 219} + '23',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
-
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Icon"
-                        param="table[
-						$width = 48,
-						$height = 48,
-						$x = 30,
-						$col = 11,
-						$colSpan = 2,
-						$icon  = 'mapst_ol_ships',
-						$mouseOverText = {26124, 219} + '24',
-						$text = table[
-                          $text   =  {26124, 219} + '24',
-                          $color  = 'Helper.color.grey',
-                          $halign = 'center',
-                          $x = 55,
-                          $y = 45,
-                        ],
-					]"/>
+                <do_for_each name="$icon" in="$icons" counter="$i">
+                    <do_if value="$icon.$type == 'icon'">
+                        <signal_cue_instantly
+                                cue="md.Simple_Menu_API.Make_Icon"
+                                param="table[
+                                    $width = 48,
+                                    $height = 48,
+                                    $x = 30,
+                                    $col = $icon.$col,
+                                    $colSpan = 2,
+                                    $icon  = $icon.$icon,
+                                    $mouseOverText = {26124, 219} + $i,
+                                    $text = table[
+                                      $text   =  {26124, 219} + $i,
+                                      $color  = 'Helper.color.grey',
+                                      $halign = 'center',
+                                      $x = 55,
+                                      $y = 45,
+                                    ],
+                                ]"/>
+                    </do_if>
+                    <do_else>
+                        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
+                        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='']"/>
+                        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
+                    </do_else>
+                </do_for_each>
 
                 <!-- emergency -->
                 <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
