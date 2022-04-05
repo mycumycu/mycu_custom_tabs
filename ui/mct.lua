@@ -299,7 +299,9 @@ function mct.filterInfoTableData(customTabMode)
             for i = #elements, 1, -1 do
                 object = ConvertStringTo64Bit(tostring(elements[i]))
                 if (mct.findInObjectTable(object) and not customTabMode) or (not mct.findInObjectTable(object, customTabMode) and customTabMode) then
-                    table.remove(infoTableData[category], i)
+                    if (customTabMode or tabsConfig.mode == 'move') then
+                        table.remove(infoTableData[category], i)
+                    end
                 end
             end
 
@@ -339,7 +341,7 @@ end
 
 --
 -- Moves all assets back to global property tab
--- Action raised by an config option
+-- Action raised by a config option
 --
 function mct.resetData()
     tabsObjectList = {

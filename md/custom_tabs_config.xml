@@ -17,7 +17,7 @@
                 <cancel_cue cue="this"/>
             </actions>
         </cue>
-        <cue name="Vault" namespace="this" version="1">
+        <cue name="Vault" namespace="this" version="2">
             <actions>
                 <set_value name="$debugPrefix" exact="'Mycu MCT: '"/>
                 <set_value name="$debugChance" exact="0"/>
@@ -41,6 +41,10 @@
 
                 <set_value name="player.entity.$customTabsConfig" exact="$customTabs"/>
             </actions>
+            <patch sinceversion="2">
+                <set_value name="$customTabs.$mode" exact="'move'" />
+                <set_value name="$customTabs.$modeIndex" exact="1" />
+            </patch>
         </cue>
         <cue name="OptionsMenu" instantiate="true">
             <conditions>
@@ -75,12 +79,30 @@
 						$colSpan = 7,
 						$height = 25,
 						$options = [
-							table[$text={26124, 207}, $value=1],
-							table[$text={26124, 208}, $value=2],
-							table[$text={26124, 209}, $value=3],
+							table[$text={26124, 207}, $id = 1, $value=1],
+							table[$text={26124, 208}, $id = 2, $value=2],
+							table[$text={26124, 209}, $id = 3, $value=3],
 						],
 						$startOption = md.MCT_Config.Vault.$customTabs.$position,
 						$mouseOverText = {26124, 210},
+						$onDropDownConfirmed = OnDropDownChange
+					]"/>
+
+                <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+                <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $colSpan = 5, $text={26124, 226}, $color = 'Helper.color.white', $halign = 'right']"/>
+                <signal_cue_instantly
+                        cue="md.Simple_Menu_API.Make_Dropdown"
+                        param="table[
+						$id = 'mode',
+						$col = 6,
+						$colSpan = 7,
+						$height = 25,
+						$options = [
+							table[$text={26124, 227}, $id = 1, $value='move'],
+							table[$text={26124, 228}, $id = 2, $value='clone'],
+						],
+						$startOption = md.MCT_Config.Vault.$customTabs.$modeIndex,
+						$mouseOverText = {26124, 229},
 						$onDropDownConfirmed = OnDropDownChange
 					]"/>
 
@@ -280,26 +302,28 @@
                     table[$type='icon', $icon = 'mapst_ol_ships', $col = 11],
                 ]"/>
 
-                <do_for_each name="$icon" in="$icons" counter="$i">
+                <set_value name="$iconIndex" exact="1"/>
+                <do_for_each name="$icon" in="$icons">
                     <do_if value="$icon.$type == 'icon'">
                         <signal_cue_instantly
                                 cue="md.Simple_Menu_API.Make_Icon"
                                 param="table[
-                                    $width = 48,
-                                    $height = 48,
+                                    $width = 45,
+                                    $height = 45,
                                     $x = 30,
                                     $col = $icon.$col,
                                     $colSpan = 2,
                                     $icon  = $icon.$icon,
-                                    $mouseOverText = {26124, 219} + $i,
+                                    $mouseOverText = {26124, 219} + $iconIndex,
                                     $text = table[
-                                      $text   =  {26124, 219} + $i,
+                                      $text   =  {26124, 219} + $iconIndex,
                                       $color  = 'Helper.color.grey',
                                       $halign = 'center',
                                       $x = 55,
-                                      $y = 45,
+                                      $y = 42,
                                     ],
                                 ]"/>
+                        <set_value name="$iconIndex" operation="add" />
                     </do_if>
                     <do_else>
                         <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>

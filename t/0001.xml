@@ -15,7 +15,7 @@
 		<t id="207">At the beginning</t>
 		<t id="208">Just after 'Stations and All ships' tab</t>
 		<t id="209">At the end</t>
-		<t id="210">Select at which position the tabs will be placed</t>
+		<t id="210">Select at which position the tabs will be placed within 'Property owned' main tab</t>
 		<t id="211">First Tab</t>
 		<t id="212">Second Tab</t>
 		<t id="213">Third Tab</t>
@@ -31,5 +31,9 @@
 		<t id="223">If you want to clear the data - nake sure that checkbox is checked</t>
 		<t id="224">Data has been successfully cleared</t>
 		<t id="225">Clear data</t>
+		<t id="226">Mode</t>
+		<t id="227">Move selected property</t>
+		<t id="228">Clone selected property</t>
+		<t id="229">Clone mode will leave property in 'Stations and All Ships' tab, while move mode will transfer it to a custom tab</t>
 	</page>
 </language>
