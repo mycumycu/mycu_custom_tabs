@@ -19,9 +19,9 @@
 		<t id="211">First Tab</t>
 		<t id="212">Second Tab</t>
 		<t id="213">Third Tab</t>
-		<t id="214">Enter name of first custom tab</t>
-		<t id="215">Enter name of second custom tab</t>
-		<t id="216">Enter name of third custom tab</t>
+		<t id="214">Name of the first custom tab \(always press 'enter' key to store the tab name\)</t>
+		<t id="215">Name of the second custom tab \(always press 'enter' key to store the tab name\)</t>
+		<t id="216">Name of the third custom tab \(always press 'enter' key to store the tab name\)</t>
 		<t id="217">Select the tab icon. You can check the appearance of the available icons below.</t>
 		<t id="218">Available icons</t>
 		<t id="219">Icon </t>
