@@ -40,7 +40,11 @@
                         <debug_text text="md.MCT_Config.Vault.$debugPrefix + 'MCT_Add_Interact_Actions'" chance="md.MCT_Config.Vault.$debugChance"/>
 
                         <set_value name="$target" exact="event.param.$object"/>
-                        <do_if value="@$target.owner == faction.player and not @$target.isdeployable and not @player.controlled.isclass.spacesuit">
+
+                        <do_if value="@$target.owner == faction.player and
+                                      not @$target.isdeployable and
+                                      @$target.macro != macro.bomb_player_limpet_emp_01_mk1_macro and
+                                      @$target.macro != macro.bomb_player_limpet_mine_01_mk1_macro">
 
                             <set_value name="$sections" exact="['main','selected_orders_all']"/>
                             <do_for_each name="$section" in="$sections" counter="$i">
