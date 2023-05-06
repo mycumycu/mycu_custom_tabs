@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mdscript name="MCT_CustomTabs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://mycu.kylos.pl/x4/md.xsd">
+<mdscript name="MCT_CustomTabs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../#modding/xsd/md.xsd">
     <cues>
         <cue name="OnLuaLoaderReady">
             <conditions>
@@ -40,7 +40,7 @@
                         <debug_text text="md.MCT_Config.Vault.$debugPrefix + 'MCT_Add_Interact_Actions'" chance="md.MCT_Config.Vault.$debugChance"/>
 
                         <set_value name="$target" exact="event.param.$object"/>
-                        <do_if value="$target.owner == faction.player and not @$target.isdeployable">
+                        <do_if value="@$target.owner == faction.player and not @$target.isdeployable and not @player.controlled.isclass.spacesuit">
 
                             <set_value name="$sections" exact="['main','selected_orders_all']"/>
                             <do_for_each name="$section" in="$sections" counter="$i">
