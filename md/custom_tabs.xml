@@ -46,7 +46,7 @@
                                       @$target.macro != macro.bomb_player_limpet_emp_01_mk1_macro and
                                       @$target.macro != macro.bomb_player_limpet_mine_01_mk1_macro">
 
-                            <set_value name="$sections" exact="['main','selected_orders_all']"/>
+                            <set_value name="$sections" exact="['custom_actions','custom_tabs']"/>
                             <do_for_each name="$section" in="$sections" counter="$i">
                                 <debug_text text="md.MCT_Config.Vault.$debugPrefix + '$section: ' + $section" chance="md.MCT_Config.Vault.$debugChance"/>
 
