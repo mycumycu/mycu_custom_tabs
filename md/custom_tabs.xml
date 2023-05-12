@@ -7,6 +7,7 @@
             </conditions>
             <actions>
                 <raise_lua_event name="'Lua_Loader.Load'" param="'extensions.kuertee_ui_extensions.ui.kuertee_menu_map'"/>
+                <raise_lua_event name="'Lua_Loader.Load'" param="'extensions.kuertee_ui_extensions.ui.kuertee_menu_interactmenu'"/>
                 <raise_lua_event name="'Lua_Loader.Load'" param="'extensions.mycu_custom_tabs.ui.mct'"/>
             </actions>
         </cue>
