@@ -9,6 +9,10 @@
                 <raise_lua_event name="'Lua_Loader.Load'" param="'extensions.kuertee_ui_extensions.ui.kuertee_menu_map'"/>
                 <raise_lua_event name="'Lua_Loader.Load'" param="'extensions.kuertee_ui_extensions.ui.kuertee_menu_interactmenu'"/>
                 <raise_lua_event name="'Lua_Loader.Load'" param="'extensions.mycu_custom_tabs.ui.mct'"/>
+
+                <raise_lua_event name="'Interact_Menu_API.Add_Custom_Actions_Group_Id'" param="'custom_tabs_group'"/>
+                <raise_lua_event name="'Interact_Menu_API.Add_Custom_Actions_Group_Text'" param="{26124, 100}"/>
+
             </actions>
         </cue>
 
@@ -47,54 +51,52 @@
                                       @$target.macro != macro.bomb_player_limpet_emp_01_mk1_macro and
                                       @$target.macro != macro.bomb_player_limpet_mine_01_mk1_macro">
 
-                            <set_value name="$sections" exact="['custom_actions','custom_tabs']"/>
-                            <do_for_each name="$section" in="$sections" counter="$i">
-                                <debug_text text="md.MCT_Config.Vault.$debugPrefix + '$section: ' + $section" chance="md.MCT_Config.Vault.$debugChance"/>
+                            <set_value name="$section" exact="'custom_tabs_group'"/>
+                            <debug_text text="md.MCT_Config.Vault.$debugPrefix + '$section: ' + $section" chance="md.MCT_Config.Vault.$debugChance"/>
 
-                                <signal_cue_instantly
-                                        cue="md.Interact_Menu_API.Add_Action"
-                                        param="table[
-                                          $id         = 'add_custom_'+$i+'1',
+                            <signal_cue_instantly
+                                    cue="md.Interact_Menu_API.Add_Action"
+                                    param="table[
+                                          $id         = 'add_custom_1',
                                           $echo       = 1,
                                           $section    = $section,
                                           $text       = {26124, 151}.[md.MCT_Config.Vault.$customTabs.$tabName1],
                                           $icon       = md.MCT_Config.Vault.$customTabs.$tabIcon1,
                                           $callback   = MCT_CustomTabsAction,
                                           ]"/>
-                                <do_if value="md.MCT_Config.Vault.$customTabs.$number gt 1">
-                                    <signal_cue_instantly
-                                            cue="md.Interact_Menu_API.Add_Action"
-                                            param="table[
-                                          $id         = 'add_custom_'+$i+'2',
+                            <do_if value="md.MCT_Config.Vault.$customTabs.$number gt 1">
+                                <signal_cue_instantly
+                                        cue="md.Interact_Menu_API.Add_Action"
+                                        param="table[
+                                          $id         = 'add_custom_2',
                                           $echo       = 2,
                                           $section    = $section,
                                           $text       = {26124, 151}.[md.MCT_Config.Vault.$customTabs.$tabName2],
                                           $icon       = md.MCT_Config.Vault.$customTabs.$tabIcon2,
                                           $callback   = MCT_CustomTabsAction,
                                           ]"/>
-                                </do_if>
-                                <do_if value="md.MCT_Config.Vault.$customTabs.$number gt 2">
-                                    <signal_cue_instantly
-                                            cue="md.Interact_Menu_API.Add_Action"
-                                            param="table[
-                                          $id         = 'add_custom_'+$i+'3',
+                            </do_if>
+                            <do_if value="md.MCT_Config.Vault.$customTabs.$number gt 2">
+                                <signal_cue_instantly
+                                        cue="md.Interact_Menu_API.Add_Action"
+                                        param="table[
+                                          $id         = 'add_custom_3',
                                           $echo       = 3,
                                           $section    = $section,
                                           $text       = {26124, 151}.[md.MCT_Config.Vault.$customTabs.$tabName3],
                                           $icon       = md.MCT_Config.Vault.$customTabs.$tabIcon3,
                                           $callback   = MCT_CustomTabsAction,
                                           ]"/>
-                                </do_if>
-                                <signal_cue_instantly
-                                        cue="md.Interact_Menu_API.Add_Action"
-                                        param="table[
-                                          $id         = 'remove_custom_'+$i,
+                            </do_if>
+                            <signal_cue_instantly
+                                    cue="md.Interact_Menu_API.Add_Action"
+                                    param="table[
+                                          $id         = 'remove_custom',
                                           $section    = $section,
                                           $text       = {26124, 150},
                                           $icon       = 'mct_icon_remove',
                                           $callback   = MCT_CustomTabsAction,
                                           ]"/>
-                            </do_for_each>
                         </do_if>
                     </actions>
                 </cue>
