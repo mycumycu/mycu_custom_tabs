@@ -3,7 +3,7 @@ local C = ffi.C
 local Lib = require("extensions.sn_mod_support_apis.lua_interface").Library
 local mapMenu
 
-local isDebug = true
+local isDebug = false
 local playerId = ConvertStringTo64Bit(tostring(C.GetPlayerID()))
 
 local orygnalInfoTableData = {}
@@ -38,7 +38,10 @@ local tabsConfig = {}
 
 local tabsObjectList = {}
 
-local function init ()
+---
+--- Initialize the mod
+---
+function mct.init()
     mct.debugText("INIT")
 
     mapMenu = Lib.Get_Egosoft_Menu("MapMenu")
@@ -58,7 +61,7 @@ local function init ()
 end
 
 --
---
+-- Add custom tabs to the property menu
 --
 function mct.createPropertyOwned_on_createPropertySection_unassignedships(numdisplayed, instance, ftable, infoTableData)
     mct.debugText("createPropertyOwned_on_createPropertySection_unassignedships")
@@ -102,7 +105,6 @@ function mct.buildTabs(mapMenuConfig)
     local localPropertyCategories = mct.deepCopy(propertyCategories)
 
     if (shouldUpdate) then
-
         mct.disableVanillaTabs(localPropertyCategories)
 
         -- add custom tabs
@@ -190,7 +192,7 @@ function mct.addObject(tabIndex, object64)
         table.insert(tabsObjectList[tabIndex], ConvertStringToLuaID(tostring(object64)))
     end
 
-    -- add also subordinates
+    -- add also its subordinates
     local subordinates = mct.getSubordinates(object64)
     for i = 1, #subordinates do
         table.insert(tabsObjectList[tabIndex], ConvertStringToLuaID(tostring(subordinates[i])))
@@ -198,7 +200,7 @@ function mct.addObject(tabIndex, object64)
 end
 
 --
--- Remove object from table
+-- Remove object from the table
 --
 function mct.removeObject(object64)
     mct.removeFromObjectTable(object64)
@@ -212,7 +214,7 @@ function mct.removeObject(object64)
 end
 
 --
--- Get object's valid subordinates
+-- Get object valid subordinates
 --
 function mct.getSubordinates(object64)
     local subordinates = {}
@@ -249,7 +251,7 @@ function mct.findInObjectTable(object, customTabMode)
 end
 
 --
---
+-- Remove object from tabsObjectList table
 --
 function mct.removeFromObjectTable(object64)
     local elementPosition = mct.findInObjectTable(object64);
@@ -295,7 +297,7 @@ function mct.trimObjectList()
 end
 
 --
---
+-- Filter data before passing it to property menu
 --
 function mct.filterInfoTableData(customTabMode)
     local infoTableData = mct.deepCopy(orygnalInfoTableData)
@@ -354,6 +356,9 @@ function mct.fillCustomTab(numdisplayed, instance, ftable)
     return numdisplayed
 end
 
+---
+--- Disable vanilla tabs if disabled via the config
+---
 function mct.disableVanillaTabs(propertyCategories)
     for i = #propertyCategories, 1, -1 do
         local propertyCategory = propertyCategories[i]
@@ -391,7 +396,7 @@ function mct.resetData()
 end
 
 ---
----
+--- "Deep" copy table
 ---
 function mct.deepCopy(original)
     local copy
@@ -439,4 +444,4 @@ function mct.printTable(name, table)
     end
 end
 
-init()
+mct.init()
