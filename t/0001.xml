@@ -1,39 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <language>
-	<page id="26124" voice="no">
-		<t id="100">Custom Tabs</t>
-		<t id="150">Remove from custom tabs</t>
-		<t id="151">Add to '%s' tab</t>
+    <page id="26124" voice="no">
+        <t id="100">Custom Tabs</t>
+        <t id="150">Remove from custom tabs</t>
+        <t id="151">Add to '%s' tab</t>
 
-		<t id="200">Custom Tab A</t>
-		<t id="201">Custom Tab B</t>
-		<t id="202">Custom Tab C</t>
-		<t id="203">General options</t>
-		<t id="204">Number of tabs</t>
-		<t id="205">Select number of tabs. Can be changed anytime.</t>
-		<t id="206">Tabs position</t>
-		<t id="207">At the beginning</t>
-		<t id="208">Just after 'Stations and All ships' tab</t>
-		<t id="209">At the end</t>
-		<t id="210">Select at which position the tabs will be placed within 'Property owned' main tab</t>
-		<t id="211">First Tab</t>
-		<t id="212">Second Tab</t>
-		<t id="213">Third Tab</t>
-		<t id="214">Name of the first custom tab \(always press 'enter' key to store the tab name\)</t>
-		<t id="215">Name of the second custom tab \(always press 'enter' key to store the tab name\)</t>
-		<t id="216">Name of the third custom tab \(always press 'enter' key to store the tab name\)</t>
-		<t id="217">Select the tab icon. You can check the appearance of the available icons below.</t>
-		<t id="218">Available icons</t>
-		<t id="219">Icon </t>
-		<t id="220">Reset options</t>
-		<t id="221">This element must be checked if you want to reset custom tabs data.</t>
-		<t id="222">This action will move all player ships and stations back to the 'Stations and All ships' property tab. It does not affect tabs configuration.</t>
-		<t id="223">If you want to clear the data - nake sure that checkbox is checked</t>
-		<t id="224">Data has been successfully cleared</t>
-		<t id="225">Clear data</t>
-		<t id="226">Mode</t>
-		<t id="227">Move selected property</t>
-		<t id="228">Clone selected property</t>
-		<t id="229">Clone mode will leave property in 'Stations and All Ships' tab, while move mode will transfer it to a custom tab</t>
-	</page>
+        <t id="200">Custom Tab</t>
+        <t id="203">General options</t>
+        <t id="204">Number of tabs</t>
+        <t id="205">Select number of tabs. Can be changed any time.</t>
+        <t id="206">Tabs position</t>
+        <t id="207">At the beginning</t>
+        <t id="208">Just after 'Stations and All ships' tab</t>
+        <t id="209">At the end</t>
+        <t id="210">Select at which position the tabs will be placed within 'Property owned' main tab</t>
+        <t id="211">First Tab</t>
+        <t id="212">Second Tab</t>
+        <t id="213">Third Tab</t>
+        <t id="214">Fourth Tab</t>
+        <t id="215">Fifth Tab</t>
+        <t id="216">Sixth Tab</t>
+        <t id="217">Seventh Tab</t>
+        <t id="218">Eighth Tab</t>
+        <t id="219">Ninth Tab</t>
+
+        <t id="220">Reset options</t>
+        <t id="221">This element must be checked if you want to reset custom tabs data.</t>
+        <t id="222">This action will move all player ships and stations back to the 'Stations and All ships' property tab. It does not affect tabs configuration.</t>
+        <t id="223">If you want to clear the data - make sure that checkbox is checked</t>
+        <t id="224">Data has been successfully cleared</t>
+        <t id="225">Clear data</t>
+        <t id="226">Mode</t>
+        <t id="227">Move selected property</t>
+        <t id="228">Clone selected property</t>
+        <t id="229">Clone mode will leave property in 'Stations and All Ships' tab, while move mode will transfer it to a custom tab</t>
+
+        <t id="230">Select the tab icon. You can check the appearance of the available icons below.</t>
+        <t id="231">Available icons</t>
+        <t id="232">Icon</t>
+
+
+        <t id="251">Name of the custom tab</t>
+
+        <t id="260">Disable vanilla tabs</t>
+        <t id="261">Stations and subordinates</t>
+        <t id="262">Fleets</t>
+        <t id="263">Unasigned ships</t>
+        <t id="264">Ships with inventory</t>
+        <t id="265">Deployables</t>
+
+        <t id="270">This option will disable vanilla tab. It can be re-enabled any time</t>
+
+    </page>
 </language>

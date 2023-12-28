@@ -54,40 +54,21 @@
                             <set_value name="$section" exact="'custom_tabs_group'"/>
                             <debug_text text="md.MCT_Config.Vault.$debugPrefix + '$section: ' + $section" chance="md.MCT_Config.Vault.$debugChance"/>
 
-                            <signal_cue_instantly
-                                    cue="md.Interact_Menu_API.Add_Action"
-                                    param="table[
-                                          $id         = 'add_custom_1',
-                                          $echo       = 1,
-                                          $section    = $section,
-                                          $text       = {26124, 151}.[md.MCT_Config.Vault.$customTabs.$tabName1],
-                                          $icon       = md.MCT_Config.Vault.$customTabs.$tabIcon1,
-                                          $callback   = MCT_CustomTabsAction,
-                                          ]"/>
-                            <do_if value="md.MCT_Config.Vault.$customTabs.$number gt 1">
+                            <do_for_each in="[1,2,3,4,5,6,7,8,9]" counter="$i">
+                                <do_if value="md.MCT_Config.Vault.$customTabs.$number ge $i">
                                 <signal_cue_instantly
                                         cue="md.Interact_Menu_API.Add_Action"
                                         param="table[
-                                          $id         = 'add_custom_2',
-                                          $echo       = 2,
+                                          $id         = 'add_custom_'+$i,
+                                          $echo       = $i,
                                           $section    = $section,
-                                          $text       = {26124, 151}.[md.MCT_Config.Vault.$customTabs.$tabName2],
-                                          $icon       = md.MCT_Config.Vault.$customTabs.$tabIcon2,
+                                          $text       = {26124, 151}.[@md.MCT_Config.Vault.$customTabs.{'$tabName' + $i}],
+                                          $icon       = @md.MCT_Config.Vault.$customTabs.{'$tabIcon' + $i},
                                           $callback   = MCT_CustomTabsAction,
                                           ]"/>
-                            </do_if>
-                            <do_if value="md.MCT_Config.Vault.$customTabs.$number gt 2">
-                                <signal_cue_instantly
-                                        cue="md.Interact_Menu_API.Add_Action"
-                                        param="table[
-                                          $id         = 'add_custom_3',
-                                          $echo       = 3,
-                                          $section    = $section,
-                                          $text       = {26124, 151}.[md.MCT_Config.Vault.$customTabs.$tabName3],
-                                          $icon       = md.MCT_Config.Vault.$customTabs.$tabIcon3,
-                                          $callback   = MCT_CustomTabsAction,
-                                          ]"/>
-                            </do_if>
+                                </do_if>
+                            </do_for_each>
+
                             <signal_cue_instantly
                                     cue="md.Interact_Menu_API.Add_Action"
                                     param="table[

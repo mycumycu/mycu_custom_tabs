@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mdscript name="MCT_Config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://mycu.kylos.pl/x4/md.xsd">
+<mdscript name="MCT_Config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../#modding/xsd/md.xsd">
     <cues>
         <cue name="RegisterMenu" instantiate="true">
             <conditions>
@@ -17,7 +17,7 @@
                 <cancel_cue cue="this"/>
             </actions>
         </cue>
-        <cue name="Vault" namespace="this" version="2">
+        <cue name="Vault" namespace="this" version="3">
             <actions>
                 <set_value name="$debugPrefix" exact="'Mycu MCT: '"/>
                 <set_value name="$debugChance" exact="0"/>
@@ -42,8 +42,38 @@
                 <set_value name="player.entity.$customTabsConfig" exact="$customTabs"/>
             </actions>
             <patch sinceversion="2">
-                <set_value name="$customTabs.$mode" exact="'move'" />
-                <set_value name="$customTabs.$modeIndex" exact="1" />
+                <set_value name="$customTabs.$mode" exact="'move'"/>
+                <set_value name="$customTabs.$modeIndex" exact="1"/>
+            </patch>
+            <patch sinceversion="3">
+                <set_value name="$customTabs.$tabName4" exact="{26124, 200} + ' 4'" />
+                <set_value name="$customTabs.$tabName5" exact="{26124, 200} + ' 5'" />
+                <set_value name="$customTabs.$tabName6" exact="{26124, 200} + ' 6'" />
+                <set_value name="$customTabs.$tabName7" exact="{26124, 200} + ' 7'" />
+                <set_value name="$customTabs.$tabName8" exact="{26124, 200} + ' 8'" />
+                <set_value name="$customTabs.$tabName9" exact="{26124, 200} + ' 9'" />
+
+                <set_value name="$customTabs.$tabIcon4" exact="'mct_icon_a'" />
+                <set_value name="$customTabs.$tabIcon5" exact="'mct_icon_b'" />
+                <set_value name="$customTabs.$tabIcon6" exact="'mct_icon_c'" />
+                <set_value name="$customTabs.$tabIcon7" exact="'mct_icon_a'" />
+                <set_value name="$customTabs.$tabIcon8" exact="'mct_icon_b'" />
+                <set_value name="$customTabs.$tabIcon9" exact="'mct_icon_c'" />
+
+                <set_value name="$customTabs.$tabIcon3Index" exact="3" />
+                <set_value name="$customTabs.$tabIcon4Index" exact="4" />
+                <set_value name="$customTabs.$tabIcon5Index" exact="5" />
+                <set_value name="$customTabs.$tabIcon6Index" exact="6" />
+                <set_value name="$customTabs.$tabIcon7Index" exact="7" />
+                <set_value name="$customTabs.$tabIcon8Index" exact="8" />
+                <set_value name="$customTabs.$tabIcon9Index" exact="9" />
+
+                <set_value name="$customTabs.$disableVanillaTabs1" exact="0" />
+                <set_value name="$customTabs.$disableVanillaTabs2" exact="0" />
+                <set_value name="$customTabs.$disableVanillaTabs3" exact="0" />
+                <set_value name="$customTabs.$disableVanillaTabs4" exact="0" />
+                <set_value name="$customTabs.$disableVanillaTabs5" exact="0" />
+
             </patch>
         </cue>
         <cue name="OptionsMenu" instantiate="true">
@@ -55,6 +85,7 @@
                 <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $colSpan = 5, $text={26124, 203}, $color = 'Helper.color.blue']"/>
                 <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
                 <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $colSpan = 5, $text={26124, 204}, $color = 'Helper.color.white', $halign = 'right']"/>
+                <!-- number of tabs -->
                 <signal_cue_instantly
                         cue="md.Simple_Menu_API.Make_Slider"
                         param="table[
@@ -64,13 +95,14 @@
 						$colSpan = 7,
 						$height = 25,
 						$text = table[$text=''],
-						$min = 1, $max = 3, $step = 1,
+						$min = 1, $max = 9, $step = 1,
 						$default = md.MCT_Config.Vault.$customTabs.$number,
 						$mouseOverText = {26124, 205},
 						$onSliderCellChanged = OnSliderChange
 					]"/>
                 <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
                 <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $colSpan = 5, $text={26124, 206}, $color = 'Helper.color.white', $halign = 'right']"/>
+                <!-- tabs position -->
                 <signal_cue_instantly
                         cue="md.Simple_Menu_API.Make_Dropdown"
                         param="table[
@@ -90,6 +122,7 @@
 
                 <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
                 <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $colSpan = 5, $text={26124, 226}, $color = 'Helper.color.white', $halign = 'right']"/>
+                <!-- tabs mode -->
                 <signal_cue_instantly
                         cue="md.Simple_Menu_API.Make_Dropdown"
                         param="table[
@@ -106,169 +139,181 @@
 						$onDropDownConfirmed = OnDropDownChange
 					]"/>
 
+
+                <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
+                <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $colSpan = 5, $text={26124, 260}, $color = 'Helper.color.blue']"/>
+
+                <!-- disable vanilla tabs -->
+                <set_value name="$disables" exact="table[
+                    $row1 = table[
+                        $disable1 = table[ $index = 1, $col = 1, $text = {26124, 261}, $mouseOverText = {26124, 270} ],
+                        $disable2 = table[ $index = 2, $col = 6, $text = {26124, 262}, $mouseOverText = {26124, 270} ],
+                    ],
+                    $row2 = table[
+                        $disable3 = table[ $index = 3, $col = 1, $text = {26124, 263}, $mouseOverText = {26124, 270} ],
+                        $disable4 = table[ $index = 4, $col = 6, $text = {26124, 264}, $mouseOverText = {26124, 270} ],
+                    ],
+                    $row3 = table[
+                        $disable5 = table[ $index = 5, $col = 1, $text = {26124, 265}, $mouseOverText = {26124, 270} ],
+                    ]
+                ]"/>
+
+                <do_for_each valuename="$disableRow" in="$disables">
+                    <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+                    <do_for_each valuename="$disable" in="$disableRow">
+                        <signal_cue_instantly
+                                cue="md.Simple_Menu_API.Make_CheckBox"
+                                param="table[
+                                    $id = 'disableVanillaTabs'+$disable.$index,
+                                    $checked = md.MCT_Config.Vault.$customTabs.{'$disableVanillaTabs' + $disable.$index},
+                                    $col = $disable.$col,
+                                    $x = 35,
+                                    $width = 'Helper.standardButtonHeight', $height = 'Helper.standardButtonHeight',
+                                    $mouseOverText = $disable.$mouseOverText,
+                                    $onClick = OnCheckboxClick,
+                                ]"/>
+                        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=$disable.$col + 1, $colSpan = 4, $text=$disable.$text, $color = 'Helper.color.white']"/>
+                    </do_for_each>
+                </do_for_each>
+
+
                 <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
                 <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='']"/>
 
+
                 <!-- tabs -->
-                <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
-                <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $colSpan = 4, $text={26124, 211}, $color = 'Helper.color.blue']"/>
-                <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=5, $colSpan = 4, $text={26124, 212}, $color = 'Helper.color.blue']"/>
-                <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=9, $colSpan = 4, $text={26124, 213}, $color = 'Helper.color.blue']"/>
+                <set_value name="$configs" exact="table[
+                    $row1 = table[
+                        $labels = table[
+                            $row1 = table[ $col = 1, $text = {26124, 211} ],
+                            $row2 = table[ $col = 5, $text = {26124, 212} ],
+                            $row3 = table[ $col = 9, $text = {26124, 213} ],
+                        ],
+                        $inputs = table[
+                            $row1 = table[ $index = 1, $col = 1, $mouseover = {26124, 251} ],
+                            $row2 = table[ $index = 2, $col = 5, $mouseover = {26124, 251} ],
+                            $row3 = table[ $index = 3, $col = 9, $mouseover = {26124, 251} ]
+                        ],
+                        $dropdowns = table[
+                            $row1 = table[ $index = 1, $col = 1, $mouseover = {26124, 230} ],
+                            $row2 = table[ $index = 2, $col = 5, $mouseover = {26124, 230} ],
+                            $row3 = table[ $index = 3, $col = 9, $mouseover = {26124, 230} ]
+                        ]
+                    ],
+                    $row2 = table[
+                        $labels = table[
+                            $row1 = table[ $col = 1, $text = {26124, 214} ],
+                            $row2 = table[ $col = 5, $text = {26124, 215} ],
+                            $row3 = table[ $col = 9, $text = {26124, 216} ],
+                        ],
+                        $inputs = table[
+                            $row1 = table[ $index = 4, $col = 1, $mouseover = {26124, 251} ],
+                            $row2 = table[ $index = 5, $col = 5, $mouseover = {26124, 251} ],
+                            $row3 = table[ $index = 6, $col = 9, $mouseover = {26124, 251} ]
+                        ],
+                        $dropdowns = table[
+                            $row1 = table[ $index = 4, $col = 1, $mouseover = {26124, 230} ],
+                            $row2 = table[ $index = 5, $col = 5, $mouseover = {26124, 230} ],
+                            $row3 = table[ $index = 6, $col = 9, $mouseover = {26124, 230} ]
+                        ]
+                    ],
+                    $row3 = table[
+                        $labels = table[
+                            $row1 = table[ $col = 1, $text = {26124, 217} ],
+                            $row2 = table[ $col = 5, $text = {26124, 218} ],
+                            $row3 = table[ $col = 9, $text = {26124, 219} ],
+                        ],
+                        $inputs = table[
+                            $row1 = table[ $index = 7, $col = 1, $mouseover = {26124, 251} ],
+                            $row2 = table[ $index = 8, $col = 5, $mouseover = {26124, 251} ],
+                            $row3 = table[ $index = 9, $col = 9, $mouseover = {26124, 251} ]
+                        ],
+                        $dropdowns = table[
+                            $row1 = table[ $index = 7, $col = 1, $mouseover = {26124, 230} ],
+                            $row2 = table[ $index = 8, $col = 5, $mouseover = {26124, 230} ],
+                            $row3 = table[ $index = 9, $col = 9, $mouseover = {26124, 230} ]
+                        ]
+                    ]
+                ]"/>
 
-                <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_EditBox"
-                        param="table[
-						$id = 'tabName1',
-						$col = 1,
-						$colSpan = 4,
-						$height = 25,
-						$defaultText = md.MCT_Config.Vault.$customTabs.$tabName1,
-						$mouseOverText = {26124, 214},
-						$onEditBoxDeactivated  = OnEditBoxDeactivated,
-					]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_EditBox"
-                        param="table[
-						$id = 'tabName2',
-						$col = 5,
-						$colSpan = 4,
-						$height = 25,
-						$defaultText = md.MCT_Config.Vault.$customTabs.$tabName2,
-						$mouseOverText = {26124, 215},
-						$onEditBoxDeactivated  = OnEditBoxDeactivated,
-					]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_EditBox"
-                        param="table[
-						$id = 'tabName3',
-						$col = 9,
-						$colSpan = 4,
-						$height = 25,
-						$defaultText = md.MCT_Config.Vault.$customTabs.$tabName3,
-						$mouseOverText = {26124, 216},
-						$onEditBoxDeactivated  = OnEditBoxDeactivated,
-					]"/>
+                <set_value name="$dropdownOptions" exact="[
+							table[$text={26124, 232} + '1',   $id=1,  $value='mct_icon_a'],
+							table[$text={26124, 232} + '2',   $id=2,  $value='mct_icon_b'],
+							table[$text={26124, 232} + '3',   $id=3,  $value='mct_icon_c'],
+							table[$text={26124, 232} + '4',   $id=4,  $value='mct_icon_1'],
+							table[$text={26124, 232} + '5',   $id=5,  $value='mct_icon_2'],
+							table[$text={26124, 232} + '6',   $id=6,  $value='mct_icon_3'],
+							table[$text={26124, 232} + '7',   $id=7,  $value='shipbuildst_shield'],
+							table[$text={26124, 232} + '8',   $id=8,  $value='shipbuildst_turret'],
+							table[$text={26124, 232} + '9',   $id=9,  $value='shipbuildst_weapon'],
+							table[$text={26124, 232} + '10',  $id=10, $value='shipbuildst_paint'],
+							table[$text={26124, 232} + '11',  $id=11, $value='shipbuildst_consumable'],
+							table[$text={26124, 232} + '12',  $id=12, $value='mapst_filtersystem'],
+							table[$text={26124, 232} + '13',  $id=13, $value='mapst_legend'],
+							table[$text={26124, 232} + '14',  $id=14, $value='mapst_information'],
+							table[$text={26124, 232} + '15',  $id=15, $value='mapst_fs_other'],
+							table[$text={26124, 232} + '16',  $id=16, $value='mapst_mission_guidance'],
+							table[$text={26124, 232} + '17',  $id=17, $value='mapst_mission_main'],
+							table[$text={26124, 232} + '18',  $id=18, $value='tlt_help'],
+							table[$text={26124, 232} + '19',  $id=19, $value='mapst_fs_fight'],
+							table[$text={26124, 232} + '20',  $id=20, $value='mapst_ol_ship_xl'],
+							table[$text={26124, 232} + '21',  $id=21, $value='mapst_ol_ship_l'],
+							table[$text={26124, 232} + '22',  $id=22, $value='mapst_ol_ship_m'],
+							table[$text={26124, 232} + '23',  $id=23, $value='mapst_ol_ship_s'],
+							table[$text={26124, 232} + '24',  $id=24, $value='mapst_ol_ships'],
+						]"/>
 
-                <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Dropdown"
-                        param="table[
-						$id = 'tabIcon1',
-						$col = 1,
-						$colSpan = 4,
-						$height = 25,
-						$options = [
-							table[$text={26124, 219} + '1',   $id=1,  $value='mct_icon_a'],
-							table[$text={26124, 219} + '2',   $id=2,  $value='mct_icon_b'],
-							table[$text={26124, 219} + '3',   $id=3,  $value='mct_icon_c'],
-							table[$text={26124, 219} + '4',   $id=4,  $value='mct_icon_1'],
-							table[$text={26124, 219} + '5',   $id=5,  $value='mct_icon_2'],
-							table[$text={26124, 219} + '6',   $id=6,  $value='mct_icon_3'],
-							table[$text={26124, 219} + '7',   $id=7,  $value='shipbuildst_shield'],
-							table[$text={26124, 219} + '8',   $id=8,  $value='shipbuildst_turret'],
-							table[$text={26124, 219} + '9',   $id=9,  $value='shipbuildst_weapon'],
-							table[$text={26124, 219} + '10',  $id=10, $value='shipbuildst_paint'],
-							table[$text={26124, 219} + '11',  $id=11, $value='shipbuildst_consumable'],
-							table[$text={26124, 219} + '12',  $id=12, $value='mapst_filtersystem'],
-							table[$text={26124, 219} + '13',  $id=13, $value='mapst_legend'],
-							table[$text={26124, 219} + '14',  $id=14, $value='mapst_information'],
-							table[$text={26124, 219} + '15',  $id=15, $value='mapst_fs_other'],
-							table[$text={26124, 219} + '16',  $id=16, $value='mapst_mission_guidance'],
-							table[$text={26124, 219} + '17',  $id=17, $value='mapst_mission_main'],
-							table[$text={26124, 219} + '18',  $id=18, $value='tlt_help'],
-							table[$text={26124, 219} + '19',  $id=19, $value='mapst_fs_fight'],
-							table[$text={26124, 219} + '20',  $id=20, $value='mapst_ol_ship_xl'],
-							table[$text={26124, 219} + '21',  $id=21, $value='mapst_ol_ship_l'],
-							table[$text={26124, 219} + '22',  $id=22, $value='mapst_ol_ship_m'],
-							table[$text={26124, 219} + '23',  $id=23, $value='mapst_ol_ship_s'],
-							table[$text={26124, 219} + '24',  $id=24, $value='mapst_ol_ships'],
-						],
-						$startOption = md.MCT_Config.Vault.$customTabs.$tabIcon1Index,
-						$mouseOverText = {26124, 217},
-						$onDropDownConfirmed = OnDropDownChange,
-					]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Dropdown"
-                        param="table[
-						$id = 'tabIcon2',
-						$col = 5,
-						$colSpan = 4,
-						$height = 25,
-						$options = [
-							table[$text={26124, 219} + '1',   $id=1,  $value='mct_icon_a'],
-							table[$text={26124, 219} + '2',   $id=2,  $value='mct_icon_b'],
-							table[$text={26124, 219} + '3',   $id=3,  $value='mct_icon_c'],
-							table[$text={26124, 219} + '4',   $id=4,  $value='mct_icon_1'],
-							table[$text={26124, 219} + '5',   $id=5,  $value='mct_icon_2'],
-							table[$text={26124, 219} + '6',   $id=6,  $value='mct_icon_3'],
-							table[$text={26124, 219} + '7',   $id=7,  $value='shipbuildst_shield'],
-							table[$text={26124, 219} + '8',   $id=8,  $value='shipbuildst_turret'],
-							table[$text={26124, 219} + '9',   $id=9,  $value='shipbuildst_weapon'],
-							table[$text={26124, 219} + '10',  $id=10, $value='shipbuildst_paint'],
-							table[$text={26124, 219} + '11',  $id=11, $value='shipbuildst_consumable'],
-							table[$text={26124, 219} + '12',  $id=12, $value='mapst_filtersystem'],
-							table[$text={26124, 219} + '13',  $id=13, $value='mapst_legend'],
-							table[$text={26124, 219} + '14',  $id=14, $value='mapst_information'],
-							table[$text={26124, 219} + '15',  $id=15, $value='mapst_fs_other'],
-							table[$text={26124, 219} + '16',  $id=16, $value='mapst_mission_guidance'],
-							table[$text={26124, 219} + '17',  $id=17, $value='mapst_mission_main'],
-							table[$text={26124, 219} + '18',  $id=18, $value='tlt_help'],
-							table[$text={26124, 219} + '19',  $id=19, $value='mapst_fs_fight'],
-							table[$text={26124, 219} + '20',  $id=20, $value='mapst_ol_ship_xl'],
-							table[$text={26124, 219} + '21',  $id=21, $value='mapst_ol_ship_l'],
-							table[$text={26124, 219} + '22',  $id=22, $value='mapst_ol_ship_m'],
-							table[$text={26124, 219} + '23',  $id=23, $value='mapst_ol_ship_s'],
-							table[$text={26124, 219} + '24',  $id=24, $value='mapst_ol_ships'],
-						],
-						$startOption = md.MCT_Config.Vault.$customTabs.$tabIcon2Index,
-						$mouseOverText = {26124, 217},
-						$onDropDownConfirmed = OnDropDownChange,
-					]"/>
-                <signal_cue_instantly
-                        cue="md.Simple_Menu_API.Make_Dropdown"
-                        param="table[
-						$id = 'tabIcon3',
-						$col = 9,
-						$colSpan = 4,
-						$height = 25,
-						$options = [
-							table[$text={26124, 219} + '1',   $id=1,  $value='mct_icon_a'],
-							table[$text={26124, 219} + '2',   $id=2,  $value='mct_icon_b'],
-							table[$text={26124, 219} + '3',   $id=3,  $value='mct_icon_c'],
-							table[$text={26124, 219} + '4',   $id=4,  $value='mct_icon_1'],
-							table[$text={26124, 219} + '5',   $id=5,  $value='mct_icon_2'],
-							table[$text={26124, 219} + '6',   $id=6,  $value='mct_icon_3'],
-							table[$text={26124, 219} + '7',   $id=7,  $value='shipbuildst_shield'],
-							table[$text={26124, 219} + '8',   $id=8,  $value='shipbuildst_turret'],
-							table[$text={26124, 219} + '9',   $id=9,  $value='shipbuildst_weapon'],
-							table[$text={26124, 219} + '10',  $id=10, $value='shipbuildst_paint'],
-							table[$text={26124, 219} + '11',  $id=11, $value='shipbuildst_consumable'],
-							table[$text={26124, 219} + '12',  $id=12, $value='mapst_filtersystem'],
-							table[$text={26124, 219} + '13',  $id=13, $value='mapst_legend'],
-							table[$text={26124, 219} + '14',  $id=14, $value='mapst_information'],
-							table[$text={26124, 219} + '15',  $id=15, $value='mapst_fs_other'],
-							table[$text={26124, 219} + '16',  $id=16, $value='mapst_mission_guidance'],
-							table[$text={26124, 219} + '17',  $id=17, $value='mapst_mission_main'],
-							table[$text={26124, 219} + '18',  $id=18, $value='tlt_help'],
-							table[$text={26124, 219} + '19',  $id=19, $value='mapst_fs_fight'],
-							table[$text={26124, 219} + '20',  $id=20, $value='mapst_ol_ship_xl'],
-							table[$text={26124, 219} + '21',  $id=21, $value='mapst_ol_ship_l'],
-							table[$text={26124, 219} + '22',  $id=22, $value='mapst_ol_ship_m'],
-							table[$text={26124, 219} + '23',  $id=23, $value='mapst_ol_ship_s'],
-							table[$text={26124, 219} + '24',  $id=24, $value='mapst_ol_ships'],
-						],
-						$startOption = md.MCT_Config.Vault.$customTabs.$tabIcon3Index,
-						$mouseOverText = {26124, 217},
-						$onDropDownConfirmed = OnDropDownChange,
-					]"/>
 
+                <do_for_each name="$id" valuename="$data" in="$configs">
+                    <!-- labels -->
+                    <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+                    <do_for_each valuename="$label" in="$data.$labels">
+                        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=$label.$col, $colSpan = 4, $text=$label.$text, $color = 'Helper.color.blue']"/>
+                    </do_for_each>
+
+                    <!-- inputs -->
+                    <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+                    <do_for_each valuename="$input" in="$data.$inputs">
+                        <signal_cue_instantly
+                                cue="md.Simple_Menu_API.Make_EditBox"
+                                param="table[
+                                    $id = 'tabName' + $input.$index,
+                                    $col = $input.$col,
+                                    $colSpan = 4,
+                                    $height = 25,
+                                    $defaultText = md.MCT_Config.Vault.$customTabs.{'$tabName' + $input.$index},
+                                    $mouseOverText = $input.$mouseover,
+                                    $onTextChanged = OnEditBoxDeactivated,
+                                    $onEditBoxDeactivated = OnEditBoxDeactivated,
+                                ]"/>
+                    </do_for_each>
+
+                    <!-- dropdowns -->
+                    <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+                    <do_for_each valuename="$dropdown" in="$data.$dropdowns">
+                        <signal_cue_instantly
+                                cue="md.Simple_Menu_API.Make_Dropdown"
+                                param="table[
+                                    $id = 'tabIcon' + $dropdown.$index,
+                                    $col = $dropdown.$col,
+                                    $colSpan = 4,
+                                    $height = 25,
+                                    $options = $dropdownOptions,
+                                    $startOption = md.MCT_Config.Vault.$customTabs.{'$tabIcon' + $dropdown.$index + 'Index'},
+                                    $mouseOverText = $dropdown.$mouseover,
+                                    $onDropDownConfirmed = OnDropDownChange,
+                            ]"/>
+                    </do_for_each>
+
+                    <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+                    <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='']"/>
+                </do_for_each>
 
                 <!-- icons -->
                 <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
                 <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='']"/>
                 <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
-                <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $colSpan = 12, $text={26124, 218}, $color = 'Helper.color.blue', $halign = 'left']"/>
+                <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $colSpan = 12, $text={26124, 231}, $color = 'Helper.color.blue', $halign = 'left']"/>
 
                 <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
 
@@ -314,16 +359,16 @@
                                     $col = $icon.$col,
                                     $colSpan = 2,
                                     $icon  = $icon.$icon,
-                                    $mouseOverText = {26124, 219} + $iconIndex,
+                                    $mouseOverText = {26124, 232} + $iconIndex,
                                     $text = table[
-                                      $text   =  {26124, 219} + $iconIndex,
+                                      $text   =  {26124, 232} + $iconIndex,
                                       $color  = 'Helper.color.grey',
                                       $halign = 'center',
                                       $x = 55,
                                       $y = 42,
                                     ],
                                 ]"/>
-                        <set_value name="$iconIndex" operation="add" />
+                        <set_value name="$iconIndex" operation="add"/>
                     </do_if>
                     <do_else>
                         <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
@@ -434,10 +479,8 @@
                 <event_cue_signalled/>
             </conditions>
             <actions>
-                <do_if value="event.param.$wasconfirmed and event.param.$textchanged">
-                    <debug_text text="md.MCT_Config.Vault.$debugPrefix + event.param.$id + ' val: ' + event.param.$text" chance="md.MCT_Config.Vault.$debugChance"/>
-                    <set_value name="md.MCT_Config.Vault.$customTabs.{'$' + event.param.$id}" exact="event.param.$text"/>
-                </do_if>
+                <debug_text text="md.MCT_Config.Vault.$debugPrefix + event.param.$id + ' val: ' + event.param.$text" chance="md.MCT_Config.Vault.$debugChance"/>
+                <set_value name="md.MCT_Config.Vault.$customTabs.{'$' + event.param.$id}" exact="event.param.$text"/>
                 <cancel_cue cue="this"/>
             </actions>
         </cue>

@@ -3,7 +3,7 @@ local C = ffi.C
 local Lib = require("extensions.sn_mod_support_apis.lua_interface").Library
 local mapMenu
 
-local isDebug = false
+local isDebug = true
 local playerId = ConvertStringTo64Bit(tostring(C.GetPlayerID()))
 
 local orygnalInfoTableData = {}
@@ -17,13 +17,26 @@ local blackboard = {
     contextAction = "$customTabsContextAction",
 }
 
+local propertyCategories = {
+    { category = "propertyall", name = ReadText(1001, 8380), icon = "mapst_propertyowned", helpOverlayID = "mapst_po_propertyowned", helpOverlayText = ReadText(1028, 3220) },
+    { category = "stations", name = ReadText(1001, 8379), icon = "mapst_ol_stations", helpOverlayID = "mapst_po_stations", helpOverlayText = ReadText(1028, 3221) },
+    { category = "fleets", name = ReadText(1001, 8326), icon = "mapst_ol_fleets", helpOverlayID = "mapst_po_fleets", helpOverlayText = ReadText(1028, 3223) },
+    { category = "unassignedships", name = ReadText(1001, 8327), icon = "mapst_ol_unassigned", helpOverlayID = "mapst_po_unassigned", helpOverlayText = ReadText(1028, 3224) },
+    { category = "inventoryships", name = ReadText(1001, 8381), icon = "mapst_ol_inventory", helpOverlayID = "mapst_po_inventory", helpOverlayText = ReadText(1028, 3225) },
+    { category = "deployables", name = ReadText(1001, 1332), icon = "mapst_ol_deployables", helpOverlayID = "mapst_po_deployables", helpOverlayText = ReadText(1028, 3226) },
+}
+
+local vanillaTabsMap = {
+    'stations',
+    'fleets',
+    'unassignedships',
+    'inventoryships',
+    'deployables',
+}
+
 local tabsConfig = {}
 
-local tabsObjectList = {
-    {},
-    {},
-    {},
-}
+local tabsObjectList = {}
 
 local function init ()
     mct.debugText("INIT")
@@ -40,7 +53,7 @@ local function init ()
     RegisterEvent("mct.resetData", mct.resetData)
 
     -- read stored data
-    tabsObjectList = GetNPCBlackboard(playerId, blackboard.dataName) or { {}, {}, {} }
+    tabsObjectList = GetNPCBlackboard(playerId, blackboard.dataName) or {}
     mct.refreshConfig()
 end
 
@@ -84,24 +97,19 @@ end
 --
 function mct.buildTabs(mapMenuConfig)
 
-    for i = #mapMenuConfig.propertyCategories, 1, -1 do
-        local propertyCategory = mapMenuConfig.propertyCategories[i]
-        if string.sub(propertyCategory.category, 1, 10) == "custom_tab" then
-            if (shouldUpdate) then
-                table.remove(mapMenuConfig.propertyCategories, i)
-            else
-                customTabsExists = true
-            end
-        end
-    end
+    mct.debugText("building tabs")
 
-    if not customTabsExists then
-        mct.debugText("not customTabsExists")
+    local localPropertyCategories = mct.deepCopy(propertyCategories)
 
+    if (shouldUpdate) then
+
+        mct.disableVanillaTabs(localPropertyCategories)
+
+        -- add custom tabs
         local initialPosition = tabsConfig.position
         -- there's no need to change anything for positions 1 and 2
         if (tabsConfig.position == 3) then
-            initialPosition = #mapMenuConfig.propertyCategories + 1
+            initialPosition = #localPropertyCategories + 1
         end
 
         for index = 1, tabsConfig.number do
@@ -112,11 +120,14 @@ function mct.buildTabs(mapMenuConfig)
                 name = tabsConfig[name],
                 icon = tabsConfig[icon],
             }
-            mct.printTable(customTabCategory)
+            mct.printTable('customTabCategory', customTabCategory)
 
-            table.insert(mapMenuConfig.propertyCategories, (initialPosition + index - 1), customTabCategory)
+            table.insert(localPropertyCategories, (initialPosition + index - 1), customTabCategory)
         end
+
     end
+
+    mapMenuConfig.propertyCategories = localPropertyCategories
 
     -- do not update on next run until user changes settings
     shouldUpdate = false
@@ -131,7 +142,7 @@ function mct.customTabsAction(_, params)
     local action = data.actionId
     local objects = data.objects
 
-    mct.printTable(objects)
+    mct.printTable('objects', objects)
     for _, object in ipairs(objects) do
         object64 = ConvertIDTo64Bit(object)
         local isValidComponent = IsValidComponent(object64)
@@ -168,6 +179,11 @@ end
 function mct.addObject(tabIndex, object64)
     -- remove first if exists
     mct.removeObject(object64)
+
+    -- initialize table element if does not exists yet
+    if (not tabsObjectList[tabIndex]) then
+        tabsObjectList[tabIndex] = {}
+    end
 
     -- add object
     if mapMenu.isObjectValid(object64) then
@@ -260,10 +276,9 @@ end
 --
 function mct.refreshConfig()
     tabsConfig = GetNPCBlackboard(playerId, blackboard.configName) or {}
-
     mct.trimObjectList()
 
-    -- mark that user changed config
+    -- mark that user changed the config
     shouldUpdate = true
 end
 
@@ -339,18 +354,45 @@ function mct.fillCustomTab(numdisplayed, instance, ftable)
     return numdisplayed
 end
 
+function mct.disableVanillaTabs(propertyCategories)
+    for i = #propertyCategories, 1, -1 do
+        local propertyCategory = propertyCategories[i]
+
+        -- remove vanilla tabs if disabled
+        local disabledVanillaCategories = mct.getDisabledVanillaCategories()
+        if (mct.inArray(disabledVanillaCategories, propertyCategory.category)) then
+            mct.debugText("Removing category", propertyCategory.category)
+            table.remove(propertyCategories, i)
+        end
+    end
+end
+
+
+---
+--- Returns disabled vanilla categories
+---
+function mct.getDisabledVanillaCategories()
+    local disabledVanillaCategories = {}
+    for i = 1, 5 do
+        if (tabsConfig['disableVanillaTabs' .. i] == 1) then
+            table.insert(disabledVanillaCategories, vanillaTabsMap[i])
+        end
+    end
+
+    return disabledVanillaCategories
+end
+
 --
 -- Moves all assets back to global property tab
 -- Action raised by a config option
 --
 function mct.resetData()
-    tabsObjectList = {
-        {},
-        {},
-        {},
-    }
+    tabsObjectList = {}
 end
 
+---
+---
+---
 function mct.deepCopy(original)
     local copy
     if type(original) == 'table' then
@@ -365,14 +407,34 @@ function mct.deepCopy(original)
     return copy
 end
 
+---
+--- Check if value exists in table
+---
+function mct.inArray (table, value)
+    for _, v in ipairs(table) do
+        if value == v then
+            return true
+        end
+    end
+
+    return false
+end
+
+---
+--- Debug
+---
 function mct.debugText(title, text)
     if (isDebug) then
         DebugError("mct.lua: " .. title .. ": " .. tostring(text))
     end
 end
 
-function mct.printTable(table)
+---
+--- Debug
+---
+function mct.printTable(name, table)
     if (isDebug) then
+        mct.debugText("++++ Printing table: ", name)
         Lib.Print_Table(table)
     end
 end
