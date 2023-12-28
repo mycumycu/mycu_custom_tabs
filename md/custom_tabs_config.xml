@@ -25,17 +25,44 @@
                 <debug_text text="$debugPrefix + 'Vault INIT'" chance="$debugChance"/>
 
                 <set_value name="$customTabs" exact="table[
+                    $mode = 'move',
+                    $modeIndex = 1,
                     $number = 3,
                     $position = 2,
-                    $tabName1 = {26124, 200},
-                    $tabName2 = {26124, 201},
-                    $tabName3 = {26124, 202},
+
+                    $tabName1 = {26124, 200}+ ' A',
                     $tabIcon1 = 'mct_icon_a',
                     $tabIcon1Index = 1,
+                    $tabName2 = {26124, 200}+ ' B',
                     $tabIcon2 = 'mct_icon_b',
                     $tabIcon2Index = 2,
+                    $tabName3 = {26124, 200}+ ' C',
                     $tabIcon3 = 'mct_icon_c',
                     $tabIcon3Index = 3,
+                    $tabName4 = {26124, 200}+ ' D',
+                    $tabIcon4 = 'mct_icon_d',
+                    $tabIcon4Index = 4,
+                    $tabName5 = {26124, 200}+ ' E',
+                    $tabIcon5 = 'mct_icon_e',
+                    $tabIcon5Index = 5,
+                    $tabName6 = {26124, 200}+ ' F',
+                    $tabIcon6 = 'mct_icon_f',
+                    $tabIcon6Index = 6,
+                    $tabName7 = {26124, 200}+ ' G',
+                    $tabIcon7 = 'mct_icon_g',
+                    $tabIcon7Index = 7,
+                    $tabName8 = {26124, 200}+ ' H',
+                    $tabIcon8 = 'mct_icon_h',
+                    $tabIcon8Index = 8,
+                    $tabName9 = {26124, 200}+ ' I',
+                    $tabIcon9 = 'mct_icon_i',
+                    $tabIcon9Index = 9,
+
+                    $disableVanillaTabs1 = 0,
+                    $disableVanillaTabs2 = 0,
+                    $disableVanillaTabs3 = 0,
+                    $disableVanillaTabs4 = 0,
+                    $disableVanillaTabs5 = 0,
                     $resetConfirm = 0,
                 ]"/>
 
@@ -46,34 +73,33 @@
                 <set_value name="$customTabs.$modeIndex" exact="1"/>
             </patch>
             <patch sinceversion="3">
-                <set_value name="$customTabs.$tabName4" exact="{26124, 200} + ' 4'" />
-                <set_value name="$customTabs.$tabName5" exact="{26124, 200} + ' 5'" />
-                <set_value name="$customTabs.$tabName6" exact="{26124, 200} + ' 6'" />
-                <set_value name="$customTabs.$tabName7" exact="{26124, 200} + ' 7'" />
-                <set_value name="$customTabs.$tabName8" exact="{26124, 200} + ' 8'" />
-                <set_value name="$customTabs.$tabName9" exact="{26124, 200} + ' 9'" />
+                <set_value name="$customTabs.$tabName4" exact="{26124, 200} + ' D'"/>
+                <set_value name="$customTabs.$tabName5" exact="{26124, 200} + ' E'"/>
+                <set_value name="$customTabs.$tabName6" exact="{26124, 200} + ' F'"/>
+                <set_value name="$customTabs.$tabName7" exact="{26124, 200} + ' G'"/>
+                <set_value name="$customTabs.$tabName8" exact="{26124, 200} + ' H'"/>
+                <set_value name="$customTabs.$tabName9" exact="{26124, 200} + ' I'"/>
 
-                <set_value name="$customTabs.$tabIcon4" exact="'mct_icon_a'" />
-                <set_value name="$customTabs.$tabIcon5" exact="'mct_icon_b'" />
-                <set_value name="$customTabs.$tabIcon6" exact="'mct_icon_c'" />
-                <set_value name="$customTabs.$tabIcon7" exact="'mct_icon_a'" />
-                <set_value name="$customTabs.$tabIcon8" exact="'mct_icon_b'" />
-                <set_value name="$customTabs.$tabIcon9" exact="'mct_icon_c'" />
+                <set_value name="$customTabs.$tabIcon4" exact="'mct_icon_d'"/>
+                <set_value name="$customTabs.$tabIcon5" exact="'mct_icon_e'"/>
+                <set_value name="$customTabs.$tabIcon6" exact="'mct_icon_f'"/>
+                <set_value name="$customTabs.$tabIcon7" exact="'mct_icon_g'"/>
+                <set_value name="$customTabs.$tabIcon8" exact="'mct_icon_h'"/>
+                <set_value name="$customTabs.$tabIcon9" exact="'mct_icon_i'"/>
 
-                <set_value name="$customTabs.$tabIcon3Index" exact="3" />
-                <set_value name="$customTabs.$tabIcon4Index" exact="4" />
-                <set_value name="$customTabs.$tabIcon5Index" exact="5" />
-                <set_value name="$customTabs.$tabIcon6Index" exact="6" />
-                <set_value name="$customTabs.$tabIcon7Index" exact="7" />
-                <set_value name="$customTabs.$tabIcon8Index" exact="8" />
-                <set_value name="$customTabs.$tabIcon9Index" exact="9" />
+                <set_value name="$customTabs.$tabIcon3Index" exact="3"/>
+                <set_value name="$customTabs.$tabIcon4Index" exact="4"/>
+                <set_value name="$customTabs.$tabIcon5Index" exact="5"/>
+                <set_value name="$customTabs.$tabIcon6Index" exact="6"/>
+                <set_value name="$customTabs.$tabIcon7Index" exact="7"/>
+                <set_value name="$customTabs.$tabIcon8Index" exact="8"/>
+                <set_value name="$customTabs.$tabIcon9Index" exact="9"/>
 
-                <set_value name="$customTabs.$disableVanillaTabs1" exact="0" />
-                <set_value name="$customTabs.$disableVanillaTabs2" exact="0" />
-                <set_value name="$customTabs.$disableVanillaTabs3" exact="0" />
-                <set_value name="$customTabs.$disableVanillaTabs4" exact="0" />
-                <set_value name="$customTabs.$disableVanillaTabs5" exact="0" />
-
+                <set_value name="$customTabs.$disableVanillaTabs1" exact="0"/>
+                <set_value name="$customTabs.$disableVanillaTabs2" exact="0"/>
+                <set_value name="$customTabs.$disableVanillaTabs3" exact="0"/>
+                <set_value name="$customTabs.$disableVanillaTabs4" exact="0"/>
+                <set_value name="$customTabs.$disableVanillaTabs5" exact="0"/>
             </patch>
         </cue>
         <cue name="OptionsMenu" instantiate="true">
@@ -236,32 +262,86 @@
                     ]
                 ]"/>
 
-                <set_value name="$dropdownOptions" exact="[
-							table[$text={26124, 232} + '1',   $id=1,  $value='mct_icon_a'],
-							table[$text={26124, 232} + '2',   $id=2,  $value='mct_icon_b'],
-							table[$text={26124, 232} + '3',   $id=3,  $value='mct_icon_c'],
-							table[$text={26124, 232} + '4',   $id=4,  $value='mct_icon_1'],
-							table[$text={26124, 232} + '5',   $id=5,  $value='mct_icon_2'],
-							table[$text={26124, 232} + '6',   $id=6,  $value='mct_icon_3'],
-							table[$text={26124, 232} + '7',   $id=7,  $value='shipbuildst_shield'],
-							table[$text={26124, 232} + '8',   $id=8,  $value='shipbuildst_turret'],
-							table[$text={26124, 232} + '9',   $id=9,  $value='shipbuildst_weapon'],
-							table[$text={26124, 232} + '10',  $id=10, $value='shipbuildst_paint'],
-							table[$text={26124, 232} + '11',  $id=11, $value='shipbuildst_consumable'],
-							table[$text={26124, 232} + '12',  $id=12, $value='mapst_filtersystem'],
-							table[$text={26124, 232} + '13',  $id=13, $value='mapst_legend'],
-							table[$text={26124, 232} + '14',  $id=14, $value='mapst_information'],
-							table[$text={26124, 232} + '15',  $id=15, $value='mapst_fs_other'],
-							table[$text={26124, 232} + '16',  $id=16, $value='mapst_mission_guidance'],
-							table[$text={26124, 232} + '17',  $id=17, $value='mapst_mission_main'],
-							table[$text={26124, 232} + '18',  $id=18, $value='tlt_help'],
-							table[$text={26124, 232} + '19',  $id=19, $value='mapst_fs_fight'],
-							table[$text={26124, 232} + '20',  $id=20, $value='mapst_ol_ship_xl'],
-							table[$text={26124, 232} + '21',  $id=21, $value='mapst_ol_ship_l'],
-							table[$text={26124, 232} + '22',  $id=22, $value='mapst_ol_ship_m'],
-							table[$text={26124, 232} + '23',  $id=23, $value='mapst_ol_ship_s'],
-							table[$text={26124, 232} + '24',  $id=24, $value='mapst_ol_ships'],
-						]"/>
+                <!-- icon definitions -->
+                <set_value name="$icons" exact="[
+                    'mct_icon_a',
+                    'mct_icon_b',
+                    'mct_icon_c',
+                    'mct_icon_d',
+                    'mct_icon_e',
+                    'mct_icon_f',
+                    'mct_icon_g',
+                    'mct_icon_h',
+                    'mct_icon_i',
+                    'mct_icon_1',
+                    'mct_icon_2',
+                    'mct_icon_3',
+                    'mct_icon_4',
+                    'mct_icon_5',
+                    'mct_icon_6',
+                    'mct_icon_7',
+                    'mct_icon_8',
+                    'mct_icon_9',
+                    'shipbuildst_shield',
+                    'vt_guild',
+                    'shipbuildst_turret',
+                    'shipbuildst_weapon',
+                    'shipbuildst_consumable',
+                    'mapst_filtersystem',
+                    'mapst_legend',
+                    'mapst_fs_other',
+                    'mapst_mission_guidance',
+                    'tlt_help',
+                    'mapst_information',
+                    'mapst_fs_think',
+                    'vt_exploration',
+                    'mapst_mission_main',
+                    'mapst_ol_ship_xl',
+                    'mapst_ol_ship_l',
+                    'mapst_ol_ship_m',
+                    'mapst_ol_ship_s',
+                    'mapst_ol_ships',
+                    'mapst_ol_fleets',
+                    'tlt_playerinfo',
+                    'vt_team',
+                    'mapst_mission_mentor',
+                    'shipbuildst_crew',
+                    'mapst_mission_guild',
+                    'vt_contactlist',
+                    'vt_reward_crewskill',
+                    'mapst_loadout',
+                    'tlt_optionsmenu',
+                    'pi_logbook',
+                    'tlt_encyclopedia',
+                    'tlt_research',
+                    'mapst_ao_orderqueue',
+                    'mapst_standing_orders',
+                    'mapst_fs_trade',
+                    'mapst_plotmanagement',
+                    'mapst_cheats',
+                    'mapst_ol_inventory',
+                    'mapst_ao_default_object',
+                    'vt_season',
+                    'mapst_ol_deployables',
+                    'mapst_fs_trade',
+                    'mapst_fs_fight',
+                    'vt_aggressive',
+                    'mapst_fs_diplomacy',
+                    'mapst_fs_mining',
+                    'mapst_ao_default_global',
+                    'vt_reward_inventory',
+                    'shipbuildst_paint',
+                    'mapst_fs_build',
+                    'vt_economic',
+                    'tlt_map',
+                    'tlt_shipinteractions',
+                    'tlt_terraforming',
+                ]"/>
+
+                <set_value name="$dropdownOptions" exact="[]"/>
+                <do_for_each name="$icon" in="$icons" counter="$i">
+                    <append_to_list name="$dropdownOptions" exact="table[$text={26124, 232} + $i, $id=$i, $value=$icon]"/>
+                </do_for_each>
 
 
                 <do_for_each name="$id" valuename="$data" in="$configs">
@@ -309,7 +389,7 @@
                     <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='']"/>
                 </do_for_each>
 
-                <!-- icons -->
+                <!-- icon gallery -->
                 <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
                 <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='']"/>
                 <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
@@ -317,49 +397,24 @@
 
                 <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
 
-                <set_value name="$icons" exact="[
-                    table[$type='icon', $icon = 'mct_icon_a', $col = 1],
-                    table[$type='icon', $icon = 'mct_icon_b', $col = 3],
-                    table[$type='icon', $icon = 'mct_icon_c', $col = 5],
-                    table[$type='icon', $icon = 'mct_icon_1', $col = 7],
-                    table[$type='icon', $icon = 'mct_icon_2', $col = 9],
-                    table[$type='icon', $icon = 'mct_icon_3', $col = 11],
-                    table[$type='row'],
-                    table[$type='icon', $icon = 'shipbuildst_shield', $col = 1],
-                    table[$type='icon', $icon = 'shipbuildst_turret', $col = 3],
-                    table[$type='icon', $icon = 'shipbuildst_weapon', $col = 5],
-                    table[$type='icon', $icon = 'shipbuildst_paint', $col = 7],
-                    table[$type='icon', $icon = 'shipbuildst_consumable', $col = 9],
-                    table[$type='icon', $icon = 'mapst_filtersystem', $col = 11],
-                    table[$type='row'],
-                    table[$type='icon', $icon = 'mapst_legend', $col = 1],
-                    table[$type='icon', $icon = 'mapst_information', $col = 3],
-                    table[$type='icon', $icon = 'mapst_fs_other', $col = 5],
-                    table[$type='icon', $icon = 'mapst_mission_guidance', $col = 7],
-                    table[$type='icon', $icon = 'mapst_mission_main', $col = 9],
-                    table[$type='icon', $icon = 'tlt_help', $col = 11],
-                    table[$type='row'],
-                    table[$type='icon', $icon = 'mapst_fs_fight', $col = 1],
-                    table[$type='icon', $icon = 'mapst_ol_ship_xl', $col = 3],
-                    table[$type='icon', $icon = 'mapst_ol_ship_l', $col = 5],
-                    table[$type='icon', $icon = 'mapst_ol_ship_m', $col = 7],
-                    table[$type='icon', $icon = 'mapst_ol_ship_s', $col = 9],
-                    table[$type='icon', $icon = 'mapst_ol_ships', $col = 11],
-                ]"/>
-
                 <set_value name="$iconIndex" exact="1"/>
                 <do_for_each name="$icon" in="$icons">
-                    <do_if value="$icon.$type == 'icon'">
-                        <signal_cue_instantly
-                                cue="md.Simple_Menu_API.Make_Icon"
-                                param="table[
+                    <!--
+                        Formula to get column numbers as [1,3,5,7,9,11,1,3,5,7,9,11,1,3...]
+                        y = 2* ((x-1) mod 6) - 1
+                     -->
+                    <set_value name="$col" exact="2 * ( ($iconIndex-1) % 6 ) + 1"/>
+
+                    <signal_cue_instantly
+                            cue="md.Simple_Menu_API.Make_Icon"
+                            param="table[
                                     $width = 45,
                                     $height = 45,
                                     $x = 30,
-                                    $col = $icon.$col,
+                                    $col = $col,
                                     $colSpan = 2,
-                                    $icon  = $icon.$icon,
-                                    $mouseOverText = {26124, 232} + $iconIndex,
+                                    $icon  = $icon,
+                                    $mouseOverText = {26124, 232} + $iconIndex + ' ' + $icon,
                                     $text = table[
                                       $text   =  {26124, 232} + $iconIndex,
                                       $color  = 'Helper.color.grey',
@@ -368,13 +423,14 @@
                                       $y = 42,
                                     ],
                                 ]"/>
-                        <set_value name="$iconIndex" operation="add"/>
-                    </do_if>
-                    <do_else>
+                    <set_value name="$iconIndex" operation="add"/>
+
+                    <do_if value="$col == 11">
                         <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
                         <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='']"/>
                         <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row" param="table[$selectable=false]"/>
-                    </do_else>
+                    </do_if>
+
                 </do_for_each>
 
                 <!-- emergency -->
@@ -468,7 +524,6 @@
                 <event_cue_signalled/>
             </conditions>
             <actions>
-                <debug_text text="md.MCT_Config.Vault.$debugPrefix + event.param.$id + ' val: ' + event.param.$option.$value" chance="md.MCT_Config.Vault.$debugChance"/>
                 <set_value name="md.MCT_Config.Vault.$customTabs.{'$' + event.param.$id}" exact="event.param.$option.$value"/>
                 <set_value name="md.MCT_Config.Vault.$customTabs.{'$' + event.param.$id + 'Index'}" exact="event.param.$option.$id"/>
                 <cancel_cue cue="this"/>

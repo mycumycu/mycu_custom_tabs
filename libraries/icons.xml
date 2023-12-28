@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE icons SYSTEM "icons.dtd" >
 <diff>
     <add sel="/icons">
         <icon name="mct_icon_a" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_a.tga" height="128" width="128"/>
         <icon name="mct_icon_b" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_b.tga" height="128" width="128"/>
         <icon name="mct_icon_c" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_c.tga" height="128" width="128"/>
+        <icon name="mct_icon_d" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_d.tga" height="128" width="128"/>
+        <icon name="mct_icon_e" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_e.tga" height="128" width="128"/>
+        <icon name="mct_icon_f" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_f.tga" height="128" width="128"/>
+        <icon name="mct_icon_g" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_g.tga" height="128" width="128"/>
+        <icon name="mct_icon_h" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_h.tga" height="128" width="128"/>
+        <icon name="mct_icon_i" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_i.tga" height="128" width="128"/>
         <icon name="mct_icon_1" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_1.tga" height="128" width="128"/>
         <icon name="mct_icon_2" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_2.tga" height="128" width="128"/>
         <icon name="mct_icon_3" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_3.tga" height="128" width="128"/>
+        <icon name="mct_icon_4" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_4.tga" height="128" width="128"/>
+        <icon name="mct_icon_5" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_5.tga" height="128" width="128"/>
+        <icon name="mct_icon_6" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_6.tga" height="128" width="128"/>
+        <icon name="mct_icon_7" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_7.tga" height="128" width="128"/>
+        <icon name="mct_icon_8" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_8.tga" height="128" width="128"/>
+        <icon name="mct_icon_9" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_9.tga" height="128" width="128"/>
         <icon name="mct_icon_remove" texture="extensions\mycu_custom_tabs\assets\fx\gui\textures\mct_icons\icon_remove.tga" height="128" width="128"/>
     </add>
 </diff>
