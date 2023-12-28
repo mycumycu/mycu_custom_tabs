@@ -6,7 +6,9 @@ local mapMenu
 local isDebug = false
 local playerId = ConvertStringTo64Bit(tostring(C.GetPlayerID()))
 
-local orygnalInfoTableData = {}
+local orignalInfoTableData = {}
+local orignalPropertyCategories = {}
+
 local shouldUpdate = true
 
 local mct = {}
@@ -15,15 +17,6 @@ local blackboard = {
     configName = "$customTabsConfig",
     dataName = "$customTabsData",
     contextAction = "$customTabsContextAction",
-}
-
-local propertyCategories = {
-    { category = "propertyall", name = ReadText(1001, 8380), icon = "mapst_propertyowned", helpOverlayID = "mapst_po_propertyowned", helpOverlayText = ReadText(1028, 3220) },
-    { category = "stations", name = ReadText(1001, 8379), icon = "mapst_ol_stations", helpOverlayID = "mapst_po_stations", helpOverlayText = ReadText(1028, 3221) },
-    { category = "fleets", name = ReadText(1001, 8326), icon = "mapst_ol_fleets", helpOverlayID = "mapst_po_fleets", helpOverlayText = ReadText(1028, 3223) },
-    { category = "unassignedships", name = ReadText(1001, 8327), icon = "mapst_ol_unassigned", helpOverlayID = "mapst_po_unassigned", helpOverlayText = ReadText(1028, 3224) },
-    { category = "inventoryships", name = ReadText(1001, 8381), icon = "mapst_ol_inventory", helpOverlayID = "mapst_po_inventory", helpOverlayText = ReadText(1028, 3225) },
-    { category = "deployables", name = ReadText(1001, 1332), icon = "mapst_ol_deployables", helpOverlayID = "mapst_po_deployables", helpOverlayText = ReadText(1028, 3226) },
 }
 
 local vanillaTabsMap = {
@@ -35,7 +28,6 @@ local vanillaTabsMap = {
 }
 
 local tabsConfig = {}
-
 local tabsObjectList = {}
 
 ---
@@ -90,7 +82,7 @@ end
 function mct.createPropertyOwned_on_add_other_objects_infoTableData(infoTableData)
     mct.refreshConfig()
 
-    orygnalInfoTableData = mct.deepCopy(infoTableData)
+    orignalInfoTableData = mct.deepCopy(infoTableData)
 
     return { infoTableData = mct.filterInfoTableData(nil) }
 end
@@ -102,7 +94,9 @@ function mct.buildTabs(mapMenuConfig)
 
     mct.debugText("building tabs")
 
-    local localPropertyCategories = mct.deepCopy(propertyCategories)
+    mct.fetchOriginalPropertyCategories(mapMenuConfig)
+
+    local localPropertyCategories = mct.deepCopy(orignalPropertyCategories)
 
     if (shouldUpdate) then
         mct.disableVanillaTabs(localPropertyCategories)
@@ -300,7 +294,7 @@ end
 -- Filter data before passing it to property menu
 --
 function mct.filterInfoTableData(customTabMode)
-    local infoTableData = mct.deepCopy(orygnalInfoTableData)
+    local infoTableData = mct.deepCopy(orignalInfoTableData)
 
     -- skip those nodes
     local excluded = {
@@ -374,7 +368,7 @@ end
 
 
 ---
---- Returns disabled vanilla categories
+--- Return disabled vanilla categories
 ---
 function mct.getDisabledVanillaCategories()
     local disabledVanillaCategories = {}
@@ -385,6 +379,15 @@ function mct.getDisabledVanillaCategories()
     end
 
     return disabledVanillaCategories
+end
+
+---
+--- Fetch game's property categories just once
+---
+function mct.fetchOriginalPropertyCategories(config)
+    if (next(orignalPropertyCategories) == nil ) then
+        orignalPropertyCategories = config.propertyCategories
+    end
 end
 
 --
