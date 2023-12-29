@@ -91,14 +91,13 @@ end
 -- Build custom tabs
 --
 function mct.buildTabs(mapMenuConfig)
-
     mct.debugText("building tabs")
 
-    mct.fetchOriginalPropertyCategories(mapMenuConfig)
-
-    local localPropertyCategories = mct.deepCopy(orignalPropertyCategories)
-
     if (shouldUpdate) then
+        mct.fetchOriginalPropertyCategories(mapMenuConfig)
+
+        local localPropertyCategories = mct.deepCopy(orignalPropertyCategories)
+
         mct.disableVanillaTabs(localPropertyCategories)
 
         -- add custom tabs
@@ -121,9 +120,8 @@ function mct.buildTabs(mapMenuConfig)
             table.insert(localPropertyCategories, (initialPosition + index - 1), customTabCategory)
         end
 
+        mapMenuConfig.propertyCategories = localPropertyCategories
     end
-
-    mapMenuConfig.propertyCategories = localPropertyCategories
 
     -- do not update on next run until user changes settings
     shouldUpdate = false
@@ -366,7 +364,6 @@ function mct.disableVanillaTabs(propertyCategories)
     end
 end
 
-
 ---
 --- Return disabled vanilla categories
 ---
@@ -385,7 +382,7 @@ end
 --- Fetch game's property categories just once
 ---
 function mct.fetchOriginalPropertyCategories(config)
-    if (next(orignalPropertyCategories) == nil ) then
+    if (next(orignalPropertyCategories) == nil) then
         orignalPropertyCategories = config.propertyCategories
     end
 end
