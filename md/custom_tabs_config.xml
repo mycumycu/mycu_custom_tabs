@@ -207,13 +207,13 @@
                 <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='']"/>
 
 
-                <!-- tabs -->
+                <!-- tab definitions -->
                 <set_value name="$configs" exact="table[
                     $row1 = table[
                         $labels = table[
-                            $row1 = table[ $col = 1, $text = {26124, 211} ],
-                            $row2 = table[ $col = 5, $text = {26124, 212} ],
-                            $row3 = table[ $col = 9, $text = {26124, 213} ],
+                            $row1 = table[ $index = 1, $col = 1, $text = {26124, 211} ],
+                            $row2 = table[ $index = 2, $col = 5, $text = {26124, 212} ],
+                            $row3 = table[ $index = 3, $col = 9, $text = {26124, 213} ],
                         ],
                         $inputs = table[
                             $row1 = table[ $index = 1, $col = 1, $mouseover = {26124, 251} ],
@@ -228,9 +228,9 @@
                     ],
                     $row2 = table[
                         $labels = table[
-                            $row1 = table[ $col = 1, $text = {26124, 214} ],
-                            $row2 = table[ $col = 5, $text = {26124, 215} ],
-                            $row3 = table[ $col = 9, $text = {26124, 216} ],
+                            $row1 = table[ $index = 4, $col = 1, $text = {26124, 214} ],
+                            $row2 = table[ $index = 5, $col = 5, $text = {26124, 215} ],
+                            $row3 = table[ $index = 6, $col = 9, $text = {26124, 216} ],
                         ],
                         $inputs = table[
                             $row1 = table[ $index = 4, $col = 1, $mouseover = {26124, 251} ],
@@ -245,9 +245,9 @@
                     ],
                     $row3 = table[
                         $labels = table[
-                            $row1 = table[ $col = 1, $text = {26124, 217} ],
-                            $row2 = table[ $col = 5, $text = {26124, 218} ],
-                            $row3 = table[ $col = 9, $text = {26124, 219} ],
+                            $row1 = table[ $index = 7, $col = 1, $text = {26124, 217} ],
+                            $row2 = table[ $index = 8, $col = 5, $text = {26124, 218} ],
+                            $row3 = table[ $index = 9, $col = 9, $text = {26124, 219} ],
                         ],
                         $inputs = table[
                             $row1 = table[ $index = 7, $col = 1, $mouseover = {26124, 251} ],
@@ -343,20 +343,22 @@
                     <append_to_list name="$dropdownOptions" exact="table[$text={26124, 232} + $i, $id=$i, $value=$icon]"/>
                 </do_for_each>
 
-
                 <do_for_each name="$id" valuename="$data" in="$configs">
                     <!-- labels -->
                     <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
                     <do_for_each valuename="$label" in="$data.$labels">
-                        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=$label.$col, $colSpan = 4, $text=$label.$text, $color = 'Helper.color.blue']"/>
+                        <do_if value="$label.$index le md.MCT_Config.Vault.$customTabs.$number">
+                            <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=$label.$col, $colSpan = 4, $text=$label.$text, $color = 'Helper.color.blue']"/>
+                        </do_if>
                     </do_for_each>
 
                     <!-- inputs -->
                     <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
                     <do_for_each valuename="$input" in="$data.$inputs">
-                        <signal_cue_instantly
-                                cue="md.Simple_Menu_API.Make_EditBox"
-                                param="table[
+                        <do_if value="$input.$index le md.MCT_Config.Vault.$customTabs.$number">
+                            <signal_cue_instantly
+                                    cue="md.Simple_Menu_API.Make_EditBox"
+                                    param="table[
                                     $id = 'tabName' + $input.$index,
                                     $col = $input.$col,
                                     $colSpan = 4,
@@ -366,14 +368,16 @@
                                     $onTextChanged = OnEditBoxDeactivated,
                                     $onEditBoxDeactivated = OnEditBoxDeactivated,
                                 ]"/>
+                        </do_if>
                     </do_for_each>
 
                     <!-- dropdowns -->
                     <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
                     <do_for_each valuename="$dropdown" in="$data.$dropdowns">
-                        <signal_cue_instantly
-                                cue="md.Simple_Menu_API.Make_Dropdown"
-                                param="table[
+                        <do_if value="$dropdown.$index le md.MCT_Config.Vault.$customTabs.$number">
+                            <signal_cue_instantly
+                                    cue="md.Simple_Menu_API.Make_Dropdown"
+                                    param="table[
                                     $id = 'tabIcon' + $dropdown.$index,
                                     $col = $dropdown.$col,
                                     $colSpan = 4,
@@ -383,10 +387,12 @@
                                     $mouseOverText = $dropdown.$mouseover,
                                     $onDropDownConfirmed = OnDropDownChange,
                             ]"/>
+                        </do_if>
                     </do_for_each>
 
                     <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
                     <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='']"/>
+                    <!--<set_value name="$loopIndex" operation="add"/>-->
                 </do_for_each>
 
                 <!-- icon gallery -->
@@ -516,6 +522,9 @@
             <actions>
                 <debug_text text="md.MCT_Config.Vault.$debugPrefix + event.param.$id + ' val: ' + event.param.$value" chance="md.MCT_Config.Vault.$debugChance"/>
                 <set_value name="md.MCT_Config.Vault.$customTabs.{'$' + event.param.$id}" exact="event.param.$value"/>
+
+                <signal_cue_instantly cue="md.Simple_Menu_API.Refresh_Menu"/>
+
                 <cancel_cue cue="this"/>
             </actions>
         </cue>
