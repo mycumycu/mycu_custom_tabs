@@ -56,15 +56,16 @@
 
                             <do_for_each in="[1,2,3,4,5,6,7,8,9]" counter="$i">
                                 <do_if value="md.MCT_Config.Vault.$customTabs.$number ge $i">
-                                <signal_cue_instantly
-                                        cue="md.Interact_Menu_API.Add_Action"
-                                        param="table[
-                                          $id         = 'add_custom_'+$i,
-                                          $echo       = $i,
-                                          $section    = $section,
-                                          $text       = {26124, 151}.[@md.MCT_Config.Vault.$customTabs.{'$tabName' + $i}],
-                                          $icon       = @md.MCT_Config.Vault.$customTabs.{'$tabIcon' + $i},
-                                          $callback   = MCT_CustomTabsAction,
+                                    <set_value name="$index" exact="md.MCT_Config.Vault.$customTabs.$order.{$i}"/>
+                                    <signal_cue_instantly
+                                            cue="md.Interact_Menu_API.Add_Action"
+                                            param="table[
+                                              $id         = 'add_custom_'+$index,
+                                              $echo       = $index,
+                                              $section    = $section,
+                                              $text       = {26124, 151}.[@md.MCT_Config.Vault.$customTabs.{'$tab' + $index}.$name],
+                                              $icon       = @md.MCT_Config.Vault.$customTabs.{'$tabIcon' + $index},
+                                              $callback   = MCT_CustomTabsAction,
                                           ]"/>
                                 </do_if>
                             </do_for_each>

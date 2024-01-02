@@ -51,5 +51,12 @@
 
         <t id="270">This option will disable vanilla tab. It can be re-enabled any time</t>
 
+        <t id="300">Reorder custom tabs</t>
+        <t id="301">Reorder</t>
+        <t id="302">Reorder the tabs based on the set conditions</t>
+        <t id="303">Move</t>
+        <t id="304">To the beginning</t>
+        <t id="305">After</t>
+        <t id="306">Done</t>
     </page>
 </language>

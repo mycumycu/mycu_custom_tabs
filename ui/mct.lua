@@ -107,17 +107,16 @@ function mct.buildTabs(mapMenuConfig)
             initialPosition = #localPropertyCategories + 1
         end
 
-        for index = 1, tabsConfig.number do
-            local name = "tabName" .. index
-            local icon = "tabIcon" .. index
+        for i = 1, tabsConfig.number do
+            local index =  tabsConfig.order[i]
+            local tab = "tab" .. index
             local customTabCategory = {
                 category = "custom_tab_" .. index,
-                name = tabsConfig[name],
-                icon = tabsConfig[icon],
+                name = tabsConfig[tab].name,
+                icon = tabsConfig[tab].icon.name,
             }
-            mct.printTable('customTabCategory', customTabCategory)
 
-            table.insert(localPropertyCategories, (initialPosition + index - 1), customTabCategory)
+            table.insert(localPropertyCategories, (initialPosition + i - 1), customTabCategory)
         end
 
         mapMenuConfig.propertyCategories = localPropertyCategories
@@ -283,6 +282,13 @@ function mct.trimObjectList()
     for i = #tabsObjectList, 1, -1 do
         if (i > tabsConfig.number) then
             mct.debugText("Trimming tabsObjects index", i)
+
+            -- remove objects from the table
+            for _, object in ipairs(tabsObjectList[i]) do
+                mct.removeFromObjectTable(object)
+            end
+
+            -- remove the table itself
             tabsObjectList[i] = {}
         end
     end
