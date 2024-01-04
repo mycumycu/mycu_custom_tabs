@@ -782,7 +782,7 @@
                 <set_value name="$reorderIndexFrom" exact="@md.MCT_Config.OptionsMenu.$reorderIndexFrom"/>
                 <set_value name="$reorderIndexTo" exact="@md.MCT_Config.OptionsMenu.$reorderIndexTo"/>
 
-                <do_if value="$reorderIndexFrom gt 0 and $reorderIndexTo ge 0">
+                <do_if value="$reorderIndexFrom gt 0 and $reorderIndexTo ge 0 and $reorderIndexFrom != $reorderIndexTo">
                     <set_value name="$newOrder" exact="[]"/>
 
                     <!-- in case of moving to the first position -->
