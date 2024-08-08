@@ -59,6 +59,8 @@ function mct.createPropertyOwned_on_createPropertySection_unassignedships(numdis
     mct.debugText("createPropertyOwned_on_createPropertySection_unassignedships")
     numdisplayed = mct.fillCustomTab(numdisplayed, instance, ftable)
 
+    mapMenu.setrow= nil
+
     return { numdisplayed = numdisplayed }
 end
 
