@@ -2,9 +2,8 @@
 <content id="CustomTabs"
          name="Mycu: Custom Tabs"
          author="Mycu"
-         version="204"
-         date="2024-08-08"
-         lastupdate="1709647839"
+         version="205"
+         date="2024-09-30"
          save="false"
          enabled="1"
          description="Adds up to nine new tabs to property owned menu allowing to organize player's assets and manage vanilla tabs.">

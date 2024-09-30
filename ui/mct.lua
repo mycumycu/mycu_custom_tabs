@@ -42,6 +42,7 @@ function mct.init()
     mapMenu.registerCallback("createPropertyOwned_on_add_other_objects_infoTableData", mct.createPropertyOwned_on_add_other_objects_infoTableData)
     mapMenu.registerCallback("createPropertyOwned_on_createPropertySection_unassignedships", mct.createPropertyOwned_on_createPropertySection_unassignedships)
     mapMenu.registerCallback("onRenderTargetSelect_on_propertyowned_newmode", mct.onRenderTargetSelect_on_propertyowned_newmode)
+    mapMenu.registerCallback("onSetActiveStateForCVMode_on_createPropertyOwned", mct.onSetActiveStateForCVMode_on_createPropertyOwned)
 
     RegisterEvent("mct.customTabsAction", mct.customTabsAction)
     RegisterEvent("mct.updateConfig", mct.refreshConfig)
@@ -76,6 +77,13 @@ function mct.onRenderTargetSelect_on_propertyowned_newmode(pickedcomponent64, ne
     end
 
     return { newmode = newmode }
+end
+
+---
+--- Set active state for custom tabs when in CV mode
+---
+function mct.onSetActiveStateForCVMode_on_createPropertyOwned(entry)
+    return entry.category == "propertyall" or string.sub(entry.category, 1, 11) == "custom_tab_"
 end
 
 --
